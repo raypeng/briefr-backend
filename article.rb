@@ -1,12 +1,13 @@
 require 'open-uri'
 require 'readability'
 require 'expander'
-# require 'url_expander' # not working
+# require 'url_expander' # might also work
 
 $PREVIEW_LENGTH = 300
 
 def domain(short_url)
   long_url = short_url.expand_urls
+  # long_url = UrlExpander::Client.expand(short_url)
   prefix, url = long_url.split("//")
   domain = url.split("/").first
   prefix + "//" + domain + "/"
