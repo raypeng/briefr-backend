@@ -1,6 +1,6 @@
 # Briefr
 
-## Back-End
+## Back-End TODO List
 
 #### _确认可行性_
 
@@ -57,6 +57,10 @@ end
 
 *   显示文章内容缩略
 
+```
+TODO
+```
+
 *   rank links by popularity
 
 ```ruby
@@ -65,4 +69,20 @@ url = "http://t.co/EsweORhs3G"
 puts client.search(url).count
 ```
 
-*   remove deuplicate articles
+*   remove duplicate articles
+
+```
+TODO
+```
+
+*   models and relationships
+
+```
+TODO
+```
+
+*   index page list view layout
+
+```
+TODO
+```
