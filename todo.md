@@ -22,7 +22,13 @@ puts tweet.full_text
 URI.extract(s)
 ```
 
-*   ~~expand shortened links to get regular links~~
+*   expand shortened links to get regular links
+
+```ruby
+# gem install expander
+require 'expander'
+long_url = short_url.expand_urls
+```
 
 *   从link中抓取文章内容
 
@@ -37,6 +43,16 @@ puts content
 
 header = "<meta charset='utf-8'>"
 File.write('sample.html', header + content)
+```
+
+*   产生缩略显示的部分段落
+
+```ruby
+def preview(html, url)
+  content = html.split(" ").slice(0, $PREVIEW_LENGTH).join(" ")
+  domain_url = domain url
+  content + "...</p> <p>Readmore at <a href='#{url}'>#{domain_url}</a></p>"
+end
 ```
 
 *   显示文章内容缩略
