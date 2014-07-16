@@ -57,4 +57,12 @@ end
 
 *   显示文章内容缩略
 
+*   rank links by popularity
+
+```ruby
+# examine popularity by counting tweets containing the link
+url = "http://t.co/EsweORhs3G"
+puts client.search(url).count
+```
+
 *   remove deuplicate articles

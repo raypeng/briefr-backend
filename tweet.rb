@@ -56,3 +56,7 @@ puts get_links w.full_text
 client.search("#worldcupfinal #Germany win", :result_type => "mixed").take(1).collect do |tweet|
   puts "#{tweet.user.screen_name}: #{tweet.text}"
 end
+
+# examine popularity by counting tweets containing the link
+url = "http://t.co/EsweORhs3G"
+puts client.search(url).count
