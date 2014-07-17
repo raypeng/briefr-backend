@@ -20,6 +20,6 @@ class Story
   belongs_to :category
 
   # validations
-  validates_presence_of :short_url, :tweet_id, :teller_username
+  validates_presence_of :short_url, :tweet_id, :teller_username, :category
   
 end

@@ -57,9 +57,7 @@ end
 
 *   显示文章内容缩略
 
-```
-TODO
-```
+see "app/views/stories/index.html.erb"
 
 *   rank links by popularity
 
@@ -77,12 +75,8 @@ TODO
 
 *   models and relationships
 
-```
-TODO
-```
+Category and Story for now
 
-*   index page list view layout
+*   index page list view layout / skeleton
 
-```
-TODO
-```
+see "app/views/stories/index.html.erb"

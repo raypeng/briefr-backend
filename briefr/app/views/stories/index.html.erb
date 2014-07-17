@@ -1,0 +1,18 @@
+<h1 id = "title">Briefr.</h1>
+
+<% @stories.each_with_index do |story, index| %>
+
+<div class="post">
+  <div class="twitterUser">@ <%= story.teller_realname %><!-- need to add link to twitter page -->
+    <div class="twitterTitle"><%= story.title %>
+      <div class="content">
+        <%= story.content_preview %>
+      <div>
+      <p class="readMore">
+        <a href="<%= story.short_url %>">Click to read more...</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<% end %>
