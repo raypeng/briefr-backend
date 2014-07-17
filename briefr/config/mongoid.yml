@@ -1,0 +1,17 @@
+defaults: &defaults
+
+development:
+  sessions:
+    default:
+      database: briefr_dev
+      hosts:
+        - localhost:27017
+
+test:
+  <<: *defaults
+  database: briefr_test
+
+# set these environment variables on your prod server
+production:
+  <<: *defaults
+  database: ruby_china
