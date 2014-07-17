@@ -25,6 +25,8 @@ def save(html)
 end
 
 url = 'http://t.co/Xf8lOLjPwQ'
+temp = Readability::Document.new(open(url).read)
 html = Readability::Document.new(open(url).read).content
-puts preview(html, url)
-save preview(html, url)
+puts temp.methods - Object.methods
+# puts preview(html, url)
+# save preview(html, url)

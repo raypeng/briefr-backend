@@ -13,6 +13,8 @@ class Story
   field :teller_username,  type: String
   field :teller_realname,  type: String
   field :time,             type: DateTime
+
+  field :expanded,         type: Boolean, default: false
   
   # timestamps! # wrong syntax maybe
 

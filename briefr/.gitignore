@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 
-# Ignore emacs auto save
+# Ignore emacs auto save.
 *.*~
+
+# Ignore Twitter App configuration file.
+/config/twitter_config.rb

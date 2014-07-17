@@ -1,5 +1,12 @@
 # Briefr
 
+### Note to Sherry
+
+```
+You can now try to run the server and see how stupid it is!
+Feel free to add anything to it, preferably getting the css working!
+```
+
 ## Back-End TODO List
 
 #### _确认可行性_
@@ -57,7 +64,9 @@ end
 
 *   显示文章内容缩略
 
+```
 see "app/views/stories/index.html.erb"
+```
 
 *   rank links by popularity
 
@@ -75,8 +84,33 @@ TODO
 
 *   models and relationships
 
+```
 Category and Story for now
+```
 
 *   index page list view layout / skeleton
 
+```
 see "app/views/stories/index.html.erb"
+```
+
+*   add helper functions to fill fields of Story model
+
+```
+see "app/helpers/stories_helper.rb"
+```
+
+*   refactor database expansion logic
+
+```
+TODO
+Now expanding the database entry is done at runtime, horribly slow!
+Need method to enforce expansionat database insertion time!
+It is too late today... Got to sleep!
+```
+
+*   readability doesn't get title entry
+
+```
+TODO
+```
