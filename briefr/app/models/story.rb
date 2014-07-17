@@ -1,23 +1,23 @@
 class Story
-  include MongoMapper::Document
+  include Mongoid::Document
 
-  key :title            String
-  key :content          String
-  key :content_preview  String
-  key :score            Integer, :default => 1
-  key :count            Integer, :default => 1
+  field :title,            type: String
+  field :content,          type: String
+  field :content_preview,  type: String
+  field :score,            type: Integer, default: 1
+  field :count,            type: Integer, default: 1
   
-  key :short_url        String
-  key :long_url         String
-  key :tweet_id         Integer
-  key :teller_username  String
-  key :teller_realname  String
-  key :time             DateTime
+  field :short_url,        type: String
+  field :long_url,         type: String
+  field :tweet_id,         type: Integer
+  field :teller_username,  type: String
+  field :teller_realname,  type: String
+  field :time,             type: DateTime
   
-  timestamps!
+  # timestamps! # wrong syntax maybe
 
   # model relations
-  belongs_to :Category
+  belongs_to :category
 
   # validations
   validates_presence_of :short_url, :tweet_id, :teller_username
