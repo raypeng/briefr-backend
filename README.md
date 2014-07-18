@@ -74,12 +74,17 @@ see "app/views/stories/index.html.erb"
 # examine popularity by counting tweets containing the link
 url = "http://t.co/EsweORhs3G"
 puts client.search(url).count
+
+# this might not work since the same long_url might be represented by many short_urls...
+# WHAT THE HELL are you thinking, TWITTER!!!
 ```
 
 *   remove duplicate articles
 
 ```
-TODO
+Can only ensure short_url field is unique
+Can't prevent from different websites showing similar articles
+Need extra mechanism
 ```
 
 *   models and relationships
@@ -113,4 +118,5 @@ It is too late today... Got to sleep!
 
 ```
 TODO
+Might migrate to 'pismo' if that really helps
 ```
