@@ -128,7 +128,7 @@ Pismo['http://www.rubyflow.com/items/4082'].html_title
 *   need to update index page list view content (title, link to tweet)
 
 ```
-TODO
+Done
 ```
 
 *   bit.ly config required by getting content and link expansion
