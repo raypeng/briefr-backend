@@ -82,6 +82,8 @@ puts client.search(url).count
 *   remove duplicate articles
 
 ```
+TODO
+
 Can only ensure short_url field is unique
 Can't prevent from different websites showing similar articles
 Need extra mechanism
@@ -90,6 +92,8 @@ Need extra mechanism
 *   models and relationships
 
 ```
+TODO
+
 Category and Story for now
 ```
 
@@ -109,14 +113,32 @@ see "app/helpers/stories_helper.rb"
 
 ```
 TODO
+
 Now expanding the database entry is done at runtime, horribly slow!
-Need method to enforce expansionat database insertion time!
-It is too late today... Got to sleep!
+Need method to enforce expansion at database insertion time!
 ```
 
-*   readability doesn't get title entry
+*   need library to capture title from link
+
+```
+require 'pismo'
+Pismo['http://www.rubyflow.com/items/4082'].html_title
+```
+
+*   need to update index page list view content (title, link to tweet)
 
 ```
 TODO
-Might migrate to 'pismo' if that really helps
+```
+
+*   bit.ly config required by getting content and link expansion
+
+```
+TODO
+```
+
+*   trim extra syntax-irrelevant whitespace for story.content
+
+```
+TODO
 ```

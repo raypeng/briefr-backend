@@ -2,17 +2,17 @@
 
 <% @stories.each_with_index do |story, index| %>
 
-<div class="post">
-  <div class="twitterUser">@ <%= story.teller_realname %><!-- need to add link to twitter page -->
-    <div class="twitterTitle"><%= story.title %>
-      <div class="content">
-        <%= raw story.content_preview %>
-      <div>
-      <p class="readMore">
-        <a href="<%= story.short_url %>">Click to read more...</a>
-      </p>
+  <div class="post">
+    <div class="twitterUser">@ <%= story.teller_realname %><!-- need to add link to twitter page -->
+      <div class="twitterTitle"><%= story.title %>
+        <div class="content">
+          <%= raw story.content_preview %>
+        </div>
+        <p class="readMore">
+          <a href="<%= story.short_url %>">Click to read more...</a>
+        </p>
+      </div>
     </div>
   </div>
-</div>
-
+  
 <% end %>

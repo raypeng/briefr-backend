@@ -5,13 +5,10 @@ module StoriesHelper
   require 'readability'
   require 'open-uri'
   require 'expander'
+  require 'pismo'
 
   def profile_name_of(username)
     $client.user(username).name
-  end
-
-  def title_from_link(url)
-    "some title"
   end
 
   def content_from_link(url)
@@ -19,7 +16,11 @@ module StoriesHelper
     # need to trim extra whitespaces
   end
 
-  def preview_of(content, length = 300)
+  def title_from_link(url)
+    Pismo[url].html_title
+  end
+
+  def preview_of(content, length = 100)
     content.split(" ").slice(0, length).join(" ") + "...</p>"
     # might be broken somehow deja vu
   end

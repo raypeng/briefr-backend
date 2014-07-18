@@ -7,6 +7,7 @@ $PREVIEW_LENGTH = 300
 
 def domain(short_url)
   long_url = short_url.expand_urls
+  puts long_url
   # long_url = UrlExpander::Client.expand(short_url)
   prefix, url = long_url.split("//")
   domain = url.split("/").first
@@ -30,3 +31,6 @@ html = Readability::Document.new(open(url).read).content
 puts temp.methods - Object.methods
 # puts preview(html, url)
 # save preview(html, url)
+
+puts domain 'http://t.co/wqeZGMYn1n'
+

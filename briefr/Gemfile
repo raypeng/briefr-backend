@@ -14,6 +14,9 @@ gem 'twitter'
 # Use readaility for capturing article content from url
 gem 'ruby-readability'
 
+# Use pismo for capturing article title from url
+gem 'pismo'
+
 # Use expander to expand shortened urls
 gem 'expander'
 
