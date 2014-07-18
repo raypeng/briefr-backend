@@ -3,7 +3,7 @@
 <% @stories.each_with_index do |story, index| %>
 
   <div class="post">
-    <div class="twitterUser">@ <%= story.teller_realname %><!-- need to add link to twitter page -->
+    <div class="twitterUser"><a href=<%= "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}" %>>@<%= story.teller_realname %></a>
       <div class="twitterTitle"><%= story.title %>
         <div class="content">
           <%= raw story.content_preview %>
