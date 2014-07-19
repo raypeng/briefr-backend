@@ -3,12 +3,8 @@ class StoriesController < ApplicationController
   include StoriesHelper
   
   def index
-    @stories = Story.all.to_a
+    @stories = Story.all
     @stories.map! { |s| expand_story s }
-    @stories.each do |story|
-      story.save
-    end
-    @stories
   end
 
   def new

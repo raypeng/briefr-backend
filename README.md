@@ -71,12 +71,16 @@ see "app/views/stories/index.html.erb"
 *   rank links by popularity
 
 ```ruby
-# examine popularity by counting tweets containing the link
-url = "http://t.co/EsweORhs3G"
-puts client.search(url).count
+TODO
 
-# this might not work since the same long_url might be represented by many short_urls...
-# WHAT THE HELL are you thinking, TWITTER!!!
+## examine popularity by counting tweets containing the link
+# url = "http://t.co/EsweORhs3G"
+# puts client.search(url).count
+
+this might not work since the same long_url might be represented by many short_urls... and this is confirmed... gosh!
+WHAT THE HELL are you thinking, TWITTER!!!
+
+need other methods
 ```
 
 *   remove duplicate articles
@@ -141,4 +145,12 @@ TODO
 
 ```
 TODO
+```
+
+*   story.content by readability doesn't preserve format ~~well~~ at all!
+
+```
+TODO
+
+find workarounds with other gems
 ```

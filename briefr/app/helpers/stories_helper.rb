@@ -20,7 +20,7 @@ module StoriesHelper
     Pismo[url].html_title
   end
 
-  def preview_of(content, length = 100)
+  def preview_of(content, length = 1000)
     content.split(" ").slice(0, length).join(" ") + "...</p>"
     # might be broken somehow deja vu
   end
@@ -30,7 +30,9 @@ module StoriesHelper
   end
 
   def count_occurrence_of_link(url)
-    $client.search(url).count
+    c = $client.search(url).count
+    puts "count: #{c}"
+    c
     # might be slow
   end
 
@@ -43,23 +45,20 @@ module StoriesHelper
   end
 
   def expand_story(story)
-    if not story.expanded
-      
-      story.teller_realname = profile_name_of story.teller_username
-      story.title = title_from_link story.short_url
-      story.content = content_from_link story.short_url
-      story.content_preview = preview_of story.content
-      
-      story.long_url = expand_url story.short_url
-      story.count = count_occurrence_of_link story.short_url
-      # story.time = # whoops! i dont know :(
 
-      story.expanded = true
+    story.teller_realname ||= profile_name_of story.teller_username
+    story.title ||= title_from_link story.short_url
+    story.content ||= content_from_link story.short_url
+    story.content_preview = preview_of story.content
       
-      story
-    else
-      story
-    end
+    story.long_url ||= expand_url story.short_url
+    story.count = count_occurrence_of_link story.short_url
+    # story.time = # whoops! i dont know :(
+
+    story.save
+    
+    story
+
   end
   
 end

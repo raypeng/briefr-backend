@@ -14,7 +14,8 @@ class Story
   field :teller_realname,  type: String
   field :time,             type: DateTime
 
-  field :expanded,         type: Boolean, default: false
+  # flag for dynamic expansion
+  # field :expanded,         type: Boolean, default: false
   
   # timestamps! # wrong syntax maybe
 
