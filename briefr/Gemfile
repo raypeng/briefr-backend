@@ -20,8 +20,9 @@ gem 'pismo'
 # Use html_press to make html lightweight for database
 gem 'html_press'
 
-# Use expander to expand shortened urls
+# Use expander / url_expander to expand shortened urls
 gem 'expander'
+gem 'url_expander'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

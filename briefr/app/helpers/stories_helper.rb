@@ -4,7 +4,7 @@ module StoriesHelper
   
   require 'readability'
   require 'open-uri'
-  require 'expander'
+  require 'url_expander'
   require 'pismo'
   require 'html_press'
 
@@ -26,7 +26,8 @@ module StoriesHelper
   end
 
   def expand_url(short_url)
-    short_url.expand_urls
+    UrlExpander::Client.expand(short_url, :config_file =>
+                               'config/url_expander_credentials.yml')
   end
 
   def count_occurrence_of_link(url)
@@ -51,10 +52,9 @@ module StoriesHelper
       
     story.long_url ||= expand_url story.short_url
     story.count ||= count_occurrence_of_link story.short_url
-    # story.time = # whoops! i dont know :(
 
     story.save
-    
+
     story
 
   end

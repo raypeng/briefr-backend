@@ -20,3 +20,6 @@
 
 # Ignore Twitter App configuration file.
 /config/twitter_config.rb
+
+# Ignore Bitly API key config
+/config/url_expander_credentials.yml

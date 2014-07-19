@@ -1,13 +1,6 @@
 # Briefr
 
-### Note to Sherry
-
-```
-You can now try to run the server and see how stupid it is!
-Feel free to add anything to it, preferably getting the css working!
-```
-
-## Back-End TODO List
+## Back-End Progress Update
 
 #### _确认可行性_
 
@@ -132,13 +125,13 @@ Pismo['http://www.rubyflow.com/items/4082'].html_title
 *   need to update index page list view content (title, link to tweet)
 
 ```
-Done
+see "app/views/stories/index.html.erb"
 ```
 
 *   bit.ly config required by getting content and link expansion
 
 ```
-TODO
+added a pair of login and api-key for bitly in config file
 ```
 
 *   trim extra syntax-irrelevant whitespace for story.content
@@ -148,7 +141,7 @@ require 'html_press'
 compressed_html = HtmlPress.press html
 ```
 
-*   story.content by readability doesn't preserve format ~~well~~ at all!
+*   `story.content` by readability doesn't preserve format ~~well~~ at all!
 
 ```
 TODO
@@ -156,7 +149,7 @@ TODO
 find workarounds with other gems
 ```
 
-*   preview_of might yield bad endings as of now
+*   `preview_of` might yield bad endings as of now
 
 ```
 TODO
@@ -164,4 +157,10 @@ TODO
 for example:
 "biggest ...
 as follows: ...
+```
+
+*   get in touch with Topsy API -- their service is perfect for our project!
+
+```
+TODO
 ```

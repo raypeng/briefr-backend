@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'readability'
 require 'expander'
-# require 'url_expander' # might also work
+require 'url_expander' # might also work
 
 $PREVIEW_LENGTH = 300
 
@@ -34,3 +34,7 @@ puts temp.methods - Object.methods
 
 puts domain 'http://t.co/wqeZGMYn1n'
 
+link = "http://t.co/ZGEGdas"
+puts link.expand_urls
+puts UrlExpander::Client.expand("http://t.co/ZGEGdas", :nested_shortening => true,
+                                :config_file => 'briefr/config/url_expander_credentials.yml')
