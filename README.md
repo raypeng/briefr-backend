@@ -70,7 +70,7 @@ see "app/views/stories/index.html.erb"
 
 *   rank links by popularity
 
-```ruby
+```
 TODO
 
 ## examine popularity by counting tweets containing the link
@@ -124,7 +124,7 @@ Need method to enforce expansion at database insertion time!
 
 *   need library to capture title from link
 
-```
+```ruby
 require 'pismo'
 Pismo['http://www.rubyflow.com/items/4082'].html_title
 ```
@@ -143,8 +143,9 @@ TODO
 
 *   trim extra syntax-irrelevant whitespace for story.content
 
-```
-TODO
+```ruby
+require 'html_press'
+compressed_html = HtmlPress.press html
 ```
 
 *   story.content by readability doesn't preserve format ~~well~~ at all!
@@ -153,4 +154,14 @@ TODO
 TODO
 
 find workarounds with other gems
+```
+
+*   preview_of might yield bad endings as of now
+
+```
+TODO
+
+for example:
+"biggest ...
+as follows: ...
 ```

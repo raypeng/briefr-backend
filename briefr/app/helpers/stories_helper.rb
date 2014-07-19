@@ -6,22 +6,22 @@ module StoriesHelper
   require 'open-uri'
   require 'expander'
   require 'pismo'
+  require 'html_press'
 
   def profile_name_of(username)
     $client.user(username).name
   end
 
   def content_from_link(url)
-    Readability::Document.new(open(url).read).content
-    # need to trim extra whitespaces
+    HtmlPress.press Readability::Document.new(open(url).read).content
   end
 
   def title_from_link(url)
     Pismo[url].html_title
   end
 
-  def preview_of(content, length = 1000)
-    content.split(" ").slice(0, length).join(" ") + "...</p>"
+  def preview_of(content, length = 100)
+    content.split(" ").slice(0, length).join(" ") + " ...</p>"
     # might be broken somehow deja vu
   end
 
@@ -30,9 +30,7 @@ module StoriesHelper
   end
 
   def count_occurrence_of_link(url)
-    c = $client.search(url).count
-    puts "count: #{c}"
-    c
+    $client.search(url).count
     # might be slow
   end
 
@@ -52,7 +50,7 @@ module StoriesHelper
     story.content_preview = preview_of story.content
       
     story.long_url ||= expand_url story.short_url
-    story.count = count_occurrence_of_link story.short_url
+    story.count ||= count_occurrence_of_link story.short_url
     # story.time = # whoops! i dont know :(
 
     story.save
