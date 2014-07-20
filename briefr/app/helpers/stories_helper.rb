@@ -49,10 +49,19 @@ module StoriesHelper
     $client.user(username).name
   end
 
-  def preview_of(content, length = 300)
-    # content.split(" ").slice(0, length).join(" ") + " ...</p>"
+  def preview_of(content, num_paragraph = 5)
     # use </pre> </p> as natural ending
-    content
+    # two extra <div><div> in the beginning
+    content = content[10, content.length - 10]
+    # make up <p> to enclose the region
+    if content[0, 2] != "<p"
+      content = "<p>" + content
+    end
+    offset = 0
+    num_paragraph.times.each do
+      offset = content.index(/<pre|<p/, offset) + 1
+    end
+    content.slice(0, offset - 1) + " <p>...</p>"
   end
 
   def expand_url(short_url)

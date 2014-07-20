@@ -31,4 +31,3 @@ puts doc.methods - Object.methods
 puts doc.options
 puts
 puts content
-

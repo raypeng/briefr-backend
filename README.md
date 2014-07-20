@@ -153,7 +153,7 @@ for example:
 "biggest ...
 as follows: ...
 
-might use `</pre>` or `</p>` as natural endings
+might use '</pre>' or '</p>' as natural endings
 ```
 
 *   get in touch with Topsy API -- their service is perfect for our project!
