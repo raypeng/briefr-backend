@@ -7,21 +7,52 @@ module StoriesHelper
   require 'url_expander'
   require 'html_press'
 
-  def profile_name_of(username)
-    $client.user(username).name
-  end
-
+  # 4 steps to get content
+  # 1) replcae <pre>xxx</pre> by DUMMY-STRING
+  # 2) process html with Readability
+  # 3) replace /posts/1 with domain_name/posts/1 in <a href>
+  # 4) replace DUMMY-STRING by <pre>xxx</pre>
   def content_from_link(url)
-    HtmlPress.press Readability::Document.new(open(url).read).content
+    
+    def extract_pre_from(html)
+      regex = /<pre.*?>.*?<\/pre>/m
+      pre_list = html.scan regex
+      html.gsub!(regex, 'DUMMY-STRING')
+      [pre_list, html]
+    end
+
+    def add_domain(html, domain)
+      html.gsub(/href=\"(\/.*?\")/, "href=\"#{domain}\\1")
+    end
+
+    def add_pre(html, pre_list)
+      pre_list.each do |p|
+        html.sub!('DUMMY-STRING', p)
+      end
+      html
+    end
+    
+    html = open(url).read
+    pre_list, replaced = extract_pre_from html
+    hash = { :tags => %w[div p a b i pre], :attributes => %w[href] }
+    html = HtmlPress.press Readability::Document.new(replaced, hash).content
+    domain = domain_of url
+    add_pre(add_domain(html, domain), pre_list)
+    
   end
 
   def title_from_link(url)
     Readability::Document.new(open(url).read).title
   end
 
+  def profile_name_of(username)
+    $client.user(username).name
+  end
+
   def preview_of(content, length = 300)
-    content.split(" ").slice(0, length).join(" ") + " ...</p>"
-    # might be broken somehow deja vu
+    # content.split(" ").slice(0, length).join(" ") + " ...</p>"
+    # use </pre> </p> as natural ending
+    content
   end
 
   def expand_url(short_url)
@@ -35,28 +66,27 @@ module StoriesHelper
   end
 
   def domain_of(url)
-    url = expand_url url
     head, tail = url.split("//")
     domain_name = tail.split("/").first
-    # need to accumulate a mapping forb.es -> forbes.com
-    head + "//" + domain_name + "/"
+    head + "//" + domain_name
   end
 
   def expand_story(story)
 
     story.teller_realname ||= profile_name_of story.teller_username
-    story.title ||= title_from_link story.short_url
-    story.content ||= content_from_link story.short_url
-    story.content_preview = preview_of story.content
-      
     story.long_url ||= expand_url story.short_url
+    
+    story.title ||= title_from_link story.long_url
+    story.content ||= content_from_link story.long_url
+    story.content_preview = preview_of story.content
+
+    # this is not expected to work
     story.count ||= count_occurrence_of_link story.short_url
 
     story.save
-
+    
     story
 
   end
   
 end
-

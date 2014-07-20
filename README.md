@@ -28,22 +28,16 @@ URI.extract(s)
 require 'url_expander'
 UrlExpander::Client.expand(short_url, :config_file =>
                            'config/url_expander_credentials.yml')
-
 ```
 
 *   从link中抓取文章内容
 
 ```ruby
 require 'open-uri'
-# gem install ruby-readability
 require 'readability'
 
-source = open('http://t.co/Xf8lOLjPwQ').read
+html = open('http://t.co/Xf8lOLjPwQ').read
 content = Readability::Document.new(source).content
-puts content
-
-header = "<meta charset='utf-8'>"
-File.write('sample.html', header + content)
 ```
 
 *   产生缩略显示的部分段落
@@ -142,13 +136,12 @@ require 'html_press'
 compressed_html = HtmlPress.press html
 ```
 
-*   `story.content` by readability doesn't preserve format ~~well~~ at all!
+*   `story.content` by readability doesn't preserve format well for `<pre` handling!
 
 ```
-TODO
-
-need at least <b><i><pre>...
-need to find workarounds with other gems
+need at least <b><i><pre>... and <a href> working
+~~need to find workarounds with other gems~~
+Done by building my own wheel
 ```
 
 *   `preview_of` might yield bad endings as of now
@@ -159,6 +152,8 @@ TODO
 for example:
 "biggest ...
 as follows: ...
+
+might use `</pre>` or `</p>` as natural endings
 ```
 
 *   get in touch with Topsy API -- their service is perfect for our project!

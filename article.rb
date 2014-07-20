@@ -20,17 +20,15 @@ def preview(html, url)
   content + "...</p> <p>Readmore at <a href='#{url}'>#{domain_url}</a></p>"
 end
 
-url = 'http://t.co/Xf8lOLjPwQ'
-temp = Readability::Document.new(open(url).read)
-html = Readability::Document.new(open(url).read).content
-puts temp.methods - Object.methods
+url = "http://t.co/tOcfNQhUDn"
+tags = %w[div p a pre b i strong]
+attr = %w[href]
+hash = { :tags => tags, :attributes => attr }
+doc = Readability::Document.new(open(url).read, hash)
+content = doc.content
+puts doc.methods - Object.methods
 
-puts temp.title
+puts doc.options
 puts
+puts content
 
-# puts domain 'http://t.co/wqeZGMYn1n'
-
-# link = "http://t.co/ZGEGdas"
-# puts link.expand_urls
-# puts UrlExpander::Client.expand("http://t.co/ZGEGdas", :nested_shortening => true,
-#                                 :config_file => 'briefr/config/url_expander_credentials.yml')
