@@ -34,7 +34,7 @@ module StoriesHelper
     
     html = open(url).read
     pre_list, replaced = extract_pre_from html
-    hash = { :tags => %w[div p a b i pre], :attributes => %w[href] }
+    hash = { :tags => %w[div p a b i pre h1 h2 h3 h4 h5 h6], :attributes => %w[href] }
     html = HtmlPress.press Readability::Document.new(replaced, hash).content
     domain = domain_of url
     add_pre(add_domain(html, domain), pre_list)
@@ -54,9 +54,9 @@ module StoriesHelper
     # two extra <div><div> in the beginning
     content = content[10, content.length - 10]
     # make up <p> to enclose the region
-    if content[0, 2] != "<p"
-      content = "<p>" + content
-    end
+    # if content[0, 2] != "<p"
+    #   content = "<p>" + content
+    # end
     offset = 0
     num_paragraph.times.each do
       offset = content.index(/<pre|<p/, offset) + 1
@@ -86,7 +86,7 @@ module StoriesHelper
     story.long_url ||= expand_url story.short_url
     
     story.title ||= title_from_link story.long_url
-    story.content ||= content_from_link story.long_url
+    story.content = content_from_link story.long_url
     story.content_preview = preview_of story.content
 
     # this is not expected to work
