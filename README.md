@@ -136,11 +136,11 @@ require 'html_press'
 compressed_html = HtmlPress.press html
 ```
 
-*   `story.content` by readability doesn't preserve format well for `<pre` handling!
+*   `story.content` by readability doesn't preserve format well for `<pre>` handling!
 
 ```
 need at least <b><i><pre>... and <a href> working
-~~need to find workarounds with other gems~~
+
 Done by building my own wheel
 ```
 

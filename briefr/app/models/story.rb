@@ -24,5 +24,6 @@ class Story
 
   # validations
   validates_presence_of :short_url, :tweet_id, :teller_username, :category
+  validates_uniqueness_of :short_url
   
 end
