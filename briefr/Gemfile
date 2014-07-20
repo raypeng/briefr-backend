@@ -20,8 +20,9 @@ gem 'pismo'
 # Use html_press to make html lightweight for database
 gem 'html_press'
 
-# Use expander / url_expander to expand shortened urls
-gem 'expander'
+# Use url_expander to expand shortened urls
+# this is favoured over 'expander' because of bitly configurability
+# gem 'expander'
 gem 'url_expander'
 
 # Use SCSS for stylesheets

@@ -25,9 +25,10 @@ URI.extract(s)
 *   expand shortened links to get regular links
 
 ```ruby
-# gem install expander
-require 'expander'
-long_url = short_url.expand_urls
+require 'url_expander'
+UrlExpander::Client.expand(short_url, :config_file =>
+                           'config/url_expander_credentials.yml')
+
 ```
 
 *   从link中抓取文章内容
@@ -118,8 +119,8 @@ Need method to enforce expansion at database insertion time!
 *   need library to capture title from link
 
 ```ruby
-require 'pismo'
-Pismo['http://www.rubyflow.com/items/4082'].html_title
+require 'readability'
+title = Readability::Document.new(source).title
 ```
 
 *   need to update index page list view content (title, link to tweet)
@@ -146,7 +147,8 @@ compressed_html = HtmlPress.press html
 ```
 TODO
 
-find workarounds with other gems
+need at least <b><i><pre>...
+need to find workarounds with other gems
 ```
 
 *   `preview_of` might yield bad endings as of now
@@ -162,5 +164,6 @@ as follows: ...
 *   get in touch with Topsy API -- their service is perfect for our project!
 
 ```
-TODO
+seems their API service is closed...
+some apikeys found on the internet are not working either.
 ```

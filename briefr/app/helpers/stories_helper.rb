@@ -5,7 +5,6 @@ module StoriesHelper
   require 'readability'
   require 'open-uri'
   require 'url_expander'
-  require 'pismo'
   require 'html_press'
 
   def profile_name_of(username)
@@ -17,10 +16,10 @@ module StoriesHelper
   end
 
   def title_from_link(url)
-    Pismo[url].html_title
+    Readability::Document.new(open(url).read).title
   end
 
-  def preview_of(content, length = 100)
+  def preview_of(content, length = 300)
     content.split(" ").slice(0, length).join(" ") + " ...</p>"
     # might be broken somehow deja vu
   end

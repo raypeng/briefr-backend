@@ -61,7 +61,6 @@ GEM
     equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.2.1)
-    expander (0.0.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
@@ -203,7 +202,6 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   coffee-rails (~> 4.0.0)
-  expander
   html_press
   jbuilder (~> 2.0)
   jquery-rails
