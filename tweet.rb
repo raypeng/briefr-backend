@@ -1,6 +1,6 @@
-require_relative 'myconfig'
+require_relative 'briefr/config/twitter_config'
 
-client = @client
+client = $client
 
 def lsmethods(obj)
   puts (obj.methods - Object.methods).join("   ")

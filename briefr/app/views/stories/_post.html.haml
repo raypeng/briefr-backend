@@ -1,0 +1,27 @@
+- @stories.each do |story|
+  .post
+    .otherUser
+    .text-right
+      %h5
+        %small
+          via
+          %i{:class => "glyphicon glyphicon-user"}
+          @BillGates, @KaifuLee, @Apple, @Weijun and
+          %span.badge
+            50+
+    %h5.twitterUser
+      %i{:class => "glyphicon glyphicon-comment"}
+      =link_to link_to "#@{story.teller_realname}", "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}"
+    %h2.twitterTitle
+      = story.title
+    .content
+      %pre
+        = raw story.content_preview
+    .readMore
+      %h5
+        Read more at
+        = link_to "inc.com", story.short_url
+        %i{:class => "glyphicon glyphicon-share-alt"}
+    %br
+    %br
+  %hr
