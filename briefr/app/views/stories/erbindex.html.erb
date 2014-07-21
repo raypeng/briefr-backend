@@ -3,9 +3,11 @@
 <% @stories.each_with_index do |story, index| %>
 
   <div class="post">
-    <div class="twitterUser"><a href=<%= "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}" %>>@<%= story.teller_realname %></a>
+    <div class="twitterUser">
+      <a href=<%= "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}" %>>@<%= story.teller_realname %></a>
     </div>
-    <div class="twitterTitle"><%= story.title %>
+    <div class="twitterTitle">
+      <%= story.title %>
     </div>
     <div class="content">
       <%= raw story.content_preview %>

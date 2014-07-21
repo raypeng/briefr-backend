@@ -86,7 +86,7 @@ module StoriesHelper
     story.long_url ||= expand_url story.short_url
     
     story.title ||= title_from_link story.long_url
-    story.content = content_from_link story.long_url
+    story.content ||= content_from_link story.long_url
     story.content_preview = preview_of story.content
 
     # this is not expected to work

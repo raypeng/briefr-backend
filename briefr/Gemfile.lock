@@ -65,6 +65,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
     guess_html_encoding (0.0.9)
+    haml (4.0.5)
+      tilt
     hike (1.2.3)
     hpricot (0.8.6)
     html_press (0.8.2)
@@ -202,6 +204,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   coffee-rails (~> 4.0.0)
+  haml
   html_press
   jbuilder (~> 2.0)
   jquery-rails
