@@ -9,6 +9,7 @@ class Story
   
   field :short_url,        type: String
   field :long_url,         type: String
+  field :domain,           type: String
   field :tweet_id,         type: Integer
   field :teller_username,  type: String
   field :teller_realname,  type: String

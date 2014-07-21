@@ -84,6 +84,7 @@ module StoriesHelper
 
     story.teller_realname ||= profile_name_of story.teller_username
     story.long_url ||= expand_url story.short_url
+    story.domain ||= domain_of story.long_url
     
     story.title ||= title_from_link story.long_url
     story.content ||= content_from_link story.long_url

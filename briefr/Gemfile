@@ -28,6 +28,10 @@ gem 'html_press'
 # gem 'expander'
 gem 'url_expander'
 
+# Use bootstrap
+gem 'bootstrap-sass'
+gem 'sprockets', '2.11.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 
