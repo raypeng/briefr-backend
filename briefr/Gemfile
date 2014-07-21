@@ -8,9 +8,20 @@ gem 'rails', '4.1.4'
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+<<<<<<< HEAD
 # Use haml instead of erb
 gem 'haml'
 
+=======
+# Implement bootstrap
+gem 'bootstrap-sass'
+gem 'sprockets', '2.11.0'
+
+# Use haml instead of erb
+gem 'haml'
+
+
+>>>>>>> inner-test-css
 # Use Twitter API wrapper
 gem 'twitter'
 
