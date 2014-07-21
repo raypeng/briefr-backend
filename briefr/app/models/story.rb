@@ -1,6 +1,7 @@
 class Story
-  include Mongoid::Document
 
+  include Mongoid::Document
+  
   field :title,            type: String
   field :content,          type: String
   field :content_preview,  type: String
@@ -14,11 +15,6 @@ class Story
   field :teller_username,  type: String
   field :teller_realname,  type: String
   field :time,             type: DateTime
-
-  # flag for dynamic expansion
-  # field :expanded,         type: Boolean, default: false
-  
-  # timestamps! # wrong syntax maybe
 
   # model relations
   belongs_to :category

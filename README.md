@@ -147,13 +147,12 @@ Done by building my own wheel
 *   `preview_of` might yield bad endings as of now
 
 ```
-TODO
-
 for example:
 "biggest ...
 as follows: ...
 
-might use '</pre>' or '</p>' as natural endings
+Done by using '</pre>' or '</p>' as natural endings
+and specifying 'num_paragraph'
 ```
 
 *   get in touch with Topsy API -- their service is perfect for our project!

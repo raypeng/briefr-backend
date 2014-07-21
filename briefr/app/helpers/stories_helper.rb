@@ -34,8 +34,9 @@ module StoriesHelper
     
     html = open(url).read
     pre_list, replaced = extract_pre_from html
-    hash = { :tags => %w[div p a b i pre h1 h2 h3 h4 h5 h6], :attributes => %w[href] }
-    html = HtmlPress.press Readability::Document.new(replaced, hash).content
+    params = { :tags => %w[div p a b i pre h1 h2 h3 h4 h5 h6 blockquote],
+               :attributes => %w[href] }
+    html = HtmlPress.press Readability::Document.new(replaced, params).content
     domain = domain_of url
     add_pre(add_domain(html, domain), pre_list)
     
@@ -50,7 +51,6 @@ module StoriesHelper
   end
 
   def preview_of(content, num_paragraph = 5)
-    # use </pre> </p> as natural ending
     # two extra <div><div> in the beginning
     content = content[10, content.length - 10]
     # make up <p> to enclose the region
@@ -58,6 +58,7 @@ module StoriesHelper
     #   content = "<p>" + content
     # end
     offset = 0
+    # use </pre> </p> as natural ending
     num_paragraph.times.each do
       offset = content.index(/<pre|<p/, offset) + 1
     end
@@ -81,20 +82,21 @@ module StoriesHelper
   end
 
   def expand_story(story)
-
+    
     story.teller_realname ||= profile_name_of story.teller_username
     story.long_url ||= expand_url story.short_url
     story.domain ||= domain_of story.long_url
-    
+
     story.title ||= title_from_link story.long_url
-    story.content ||= content_from_link story.long_url
+    story.content = content_from_link story.long_url
     story.content_preview = preview_of story.content
 
     # this is not expected to work
     story.count ||= count_occurrence_of_link story.short_url
 
-    story.save
-    
+    p story.save
+    p story.errors
+
     story
 
   end
