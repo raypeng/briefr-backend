@@ -34,7 +34,8 @@ module StoriesHelper
     
     html = open(url).read
     pre_list, replaced = extract_pre_from html
-    params = { :tags => %w[div p a b i pre h1 h2 h3 h4 h5 h6 blockquote],
+    params = { :tags => %w[div span p a b i pre h1 h2 h3 h4 h5 h6 strong small em
+                          blockquote ul ol li],
                :attributes => %w[href] }
     html = HtmlPress.press Readability::Document.new(replaced, params).content
     domain = domain_of url
@@ -53,14 +54,14 @@ module StoriesHelper
   def preview_of(content, num_paragraph = 5)
     # two extra <div><div> in the beginning
     content = content[10, content.length - 10]
-    # make up <p> to enclose the region
-    # if content[0, 2] != "<p"
-    #   content = "<p>" + content
-    # end
-    offset = 0
     # use </pre> </p> as natural ending
+    offset = 0
     num_paragraph.times.each do
-      offset = content.index(/<pre|<p/, offset) + 1
+      temp = content.index(/<pre|<p/, offset)
+      if temp.nil?
+        break
+      end
+      offset = temp + 1
     end
     content.slice(0, offset - 1) + " <p>...</p>"
   end

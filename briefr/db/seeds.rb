@@ -15,4 +15,7 @@ s3 = Story.create( { tweet_id: 471597689704939521, teller_username: 'CMSFreiberu
                      short_url: 'http://t.co/ZlA85AS0b4', category: tech } )
 s4 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview',
                      short_url: 'http://t.co/oJn6yx0YPc', category: tech } )
+s5 = Story.create( { tweet_id: 491282774352211970, teller_username: 'MIT',
+                     short_url: 'http://t.co/3OgKKIq6G3', category: tech } )
+
 

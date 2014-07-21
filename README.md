@@ -65,7 +65,8 @@ TODO
 # url = "http://t.co/EsweORhs3G"
 # puts client.search(url).count
 
-this might not work since the same long_url might be represented by many short_urls... and this is confirmed... gosh!
+this might not work since the same long_url might be represented by many short_urls...
+and this is confirmed... gosh!
 WHAT THE HELL are you thinking, TWITTER!!!
 
 need other methods
