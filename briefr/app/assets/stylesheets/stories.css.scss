@@ -4,11 +4,11 @@
 @import url(http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css);
 @import url(http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css);
 
-
+$grayLighter: #eeeeee;
+$grayLight: #999999;
 $grayMediumLight: #eaeaea;
-
-$grayLight: #eaeaea;
-$grayDarker: #eaeaea;
+$grayDarker: #222222;
+$grayDark: #333333;
 
 $themeColorLighter : #83a801;
 $themeColor : #7b9b80;
@@ -18,7 +18,8 @@ pre {
   font-size: 1.0em;
   margin-bottom: 30px;
   font-weight: normal;
-  font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+  // font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+  font-family: Courier New;
   color: $gray;
   border-radius: 15px;
   border-color: #f4fff3;
@@ -28,11 +29,13 @@ pre {
 .navbar-form input, .form-inline input {
   width:auto;
 }
+
 .container{
   margin-left:auto !important;
   margin-right:auto !important;
   width: 1200px !important;
 }
+
 header {
   min-height:120px;
   margin-bottom:5px;
@@ -77,12 +80,14 @@ h3.highlight  {
   color:#ffffff;
   border-radius:0;
 }
+
 .navbar-nav > li > a {
   color:#fff;
   padding-left:20px;
   padding-right:20px;
   border-left:1px solid $themeColorDarker;
 }
+
 .navbar-nav > li:last-child > a {
   border-right:1px solid $themeColorDarker;
 }
@@ -127,9 +132,7 @@ h3.highlight  {
   border-width:0;
   -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.09);
   box-shadow: 0 3px 3px  rgba(0, 0, 0, 0.09);
-
 }
-
 
 .thumbnail {
   margin-bottom:8px;
