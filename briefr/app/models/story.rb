@@ -13,6 +13,9 @@ class Story
   field :teller_username,  type: String
   field :teller_realname,  type: String
   field :time,             type: DateTime
+
+  # flag for dynamic expansion
+  # field :expanded,         type: Boolean, default: false
   
   # timestamps! # wrong syntax maybe
 
@@ -20,6 +23,7 @@ class Story
   belongs_to :category
 
   # validations
-  validates_presence_of :short_url, :tweet_id, :teller_username
+  validates_presence_of :short_url, :tweet_id, :teller_username, :category
+  validates_uniqueness_of :short_url
   
 end

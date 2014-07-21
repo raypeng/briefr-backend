@@ -7,7 +7,26 @@ gem 'rails', '4.1.4'
 # Use MongoDB instead of Active Record
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'bson_ext'
-# gem 'mongo_mapper'
+
+# Use haml instead of erb
+gem 'haml'
+
+# Use Twitter API wrapper
+gem 'twitter'
+
+# Use readaility for capturing article content from url
+gem 'ruby-readability'
+
+# Use pismo for capturing article title from url
+gem 'pismo'
+
+# Use html_press to make html lightweight for database
+gem 'html_press'
+
+# Use url_expander to expand shortened urls
+# this is favoured over 'expander' because of bitly configurability
+# gem 'expander'
+gem 'url_expander'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

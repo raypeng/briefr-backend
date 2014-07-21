@@ -1,0 +1,20 @@
+<h1 id = "title">Briefr.</h1>
+
+<% @stories.each_with_index do |story, index| %>
+
+  <div class="post">
+    <div class="twitterUser">
+      <a href=<%= "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}" %>>@<%= story.teller_realname %></a>
+    </div>
+    <div class="twitterTitle">
+      <%= story.title %>
+    </div>
+    <div class="content">
+      <%= raw story.content_preview %>
+    </div>
+    <p class="readMore">
+      <a href="<%= story.short_url %>">Click to read more...</a>
+    </p>
+  </div>
+  
+<% end %>

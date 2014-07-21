@@ -1,9 +1,10 @@
 class StoriesController < ApplicationController
 
+  include StoriesHelper
+  
   def index
-  end
-
-  def new
+    @stories = Story.all
+    @stories.map! { |s| expand_story s }
   end
 
 end
