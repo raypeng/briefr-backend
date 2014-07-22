@@ -89,16 +89,17 @@ module StoriesHelper
     story.domain ||= domain_of story.long_url
 
     story.title ||= title_from_link story.long_url
-    story.content ||= content_from_link story.long_url
-    story.content_preview = preview_of story.content
+    story.content_preview ||= preview_of content_from_link story.long_url
 
     # this is not expected to work
-    story.count ||= count_occurrence_of_link story.short_url
+    # story.count ||= count_occurrence_of_link story.short_url
 
-    p story.save
-    p story.errors
-
-    story
+    if story.save
+      story
+    else story.save
+      # simply to stop the web app and notify
+      raise ActionController::RoutingError.new('Bad DB insertion')
+    end
 
   end
   

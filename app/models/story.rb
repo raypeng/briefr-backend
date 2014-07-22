@@ -3,7 +3,7 @@ class Story
   include Mongoid::Document
   
   field :title,            type: String
-  field :content,          type: String
+  # field :content,          type: String
   field :content_preview,  type: String
   field :score,            type: Integer, default: 1
   field :count,            type: Integer, default: 1
@@ -14,7 +14,7 @@ class Story
   field :tweet_id,         type: Integer
   field :teller_username,  type: String
   field :teller_realname,  type: String
-  field :time,             type: DateTime
+  # field :time,             type: DateTime
 
   # model relations
   belongs_to :category

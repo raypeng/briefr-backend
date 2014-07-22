@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 tech = Category.create( { name: 'Tech' } )
+
 s1 = Story.create( { tweet_id: 489815471382736897, teller_username: 'tim_cook',
                      short_url: 'http://t.co/tOcfNQhUDn', category: tech } )
 s2 = Story.create( { tweet_id: 490306429585092608, teller_username: 'rayrpeng',
@@ -18,4 +19,6 @@ s4 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview'
 s5 = Story.create( { tweet_id: 491282774352211970, teller_username: 'MIT',
                      short_url: 'http://t.co/3OgKKIq6G3', category: tech } )
 
-
+t1 = Teller.create( { username: 'WIRED', category: tech } )
+t2 = Teller.create( { username: 'googledevs', category: tech } )
+t3 = Teller.create( { username: 'techreview', category: tech } )
