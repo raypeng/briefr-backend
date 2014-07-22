@@ -51,7 +51,7 @@ module StoriesHelper
     $client.user(username).name
   end
 
-  def preview_of(content, num_paragraph = 5)
+  def preview_of(content, num_paragraph = 10)
     # two extra <div><div> in the beginning
     content = content[10, content.length - 10]
     # use </pre> </p> as natural ending
@@ -89,7 +89,7 @@ module StoriesHelper
     story.domain ||= domain_of story.long_url
 
     story.title ||= title_from_link story.long_url
-    story.content = content_from_link story.long_url
+    story.content ||= content_from_link story.long_url
     story.content_preview = preview_of story.content
 
     # this is not expected to work
