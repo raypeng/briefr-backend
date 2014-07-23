@@ -1,7 +1,8 @@
 module StoriesHelper
 
   require_relative '../../config/twitter_config'
-  
+
+  require 'net/http'
   require 'readability'
   require 'open-uri'
   require 'url_expander'
@@ -35,8 +36,8 @@ module StoriesHelper
     html = open(url).read
     pre_list, replaced = extract_pre_from html
     params = { :tags => %w[div span p a b i pre h1 h2 h3 h4 h5 h6 strong small em
-                          blockquote ul ol li],
-               :attributes => %w[href] }
+                          blockquote ul ol li img],
+               :attributes => %w[href src] }
     html = HtmlPress.press Readability::Document.new(replaced, params).content
     domain = domain_of url
     add_pre(add_domain(html, domain), pre_list)
@@ -88,8 +89,8 @@ module StoriesHelper
     story.long_url ||= expand_url story.short_url
     story.domain ||= domain_of story.long_url
 
-    story.title ||= title_from_link story.long_url
-    story.content_preview ||= preview_of content_from_link story.long_url
+    story.title ||= title_from_link story.short_url
+    story.content_preview ||= preview_of content_from_link story.short_url
 
     # this is not expected to work
     # story.count ||= count_occurrence_of_link story.short_url

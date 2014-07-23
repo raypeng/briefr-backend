@@ -3,7 +3,7 @@ class StoriesController < ApplicationController
   include StoriesHelper
   
   def index
-    @stories = Story.all
+    @stories = Story.where(on_topic?: true)
     @stories.map! { |s| expand_story s }
   end
 
