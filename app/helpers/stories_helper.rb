@@ -13,7 +13,7 @@ module StoriesHelper
   # 2) process html with Readability
   # 3) replace /posts/1 with domain_name/posts/1 in <a href>
   # 4) replace DUMMY-STRING by <pre>xxx</pre>
-  def content_from_link(url)
+  def content_from(html, url)
     
     def extract_pre_from(html)
       regex = /<pre.*?>.*?<\/pre>/m
@@ -33,7 +33,6 @@ module StoriesHelper
       html
     end
     
-    html = open(url).read
     pre_list, replaced = extract_pre_from html
     params = { :tags => %w[div span p a b i pre h1 h2 h3 h4 h5 h6 strong small em
                           blockquote ul ol li img],
@@ -44,8 +43,8 @@ module StoriesHelper
     
   end
 
-  def title_from_link(url)
-    Readability::Document.new(open(url).read).title
+  def title_from_html(html)
+    Readability::Document.new(html).title
   end
 
   def profile_name_of(username)
@@ -68,8 +67,15 @@ module StoriesHelper
   end
 
   def expand_url(short_url)
-    UrlExpander::Client.expand(short_url, :config_file =>
-                               'config/url_expander_credentials.yml')
+    begin
+      UrlExpander::Client.expand(short_url, :config_file =>
+                                 'config/url_expander_credentials.yml')
+    rescue Exception => e
+      # if it is a bad link, bear with the old short_link
+      p e.message
+      p "link can't be fetched or expanded"
+      short_url
+    end
   end
 
   def count_occurrence_of_link(url)
@@ -84,22 +90,31 @@ module StoriesHelper
   end
 
   def expand_story(story)
-    
+
     story.teller_realname ||= profile_name_of story.teller_username
     story.long_url ||= expand_url story.short_url
     story.domain ||= domain_of story.long_url
 
-    story.title ||= title_from_link story.short_url
-    story.content_preview ||= preview_of content_from_link story.short_url
+    begin
+      html = open(story.short_url).read
+      story.title ||= title_from_html html
+      story.content_preview ||= preview_of content_from html, story.long_url
 
-    # this is not expected to work
-    # story.count ||= count_occurrence_of_link story.short_url
+      # this is not expected to work
+      # story.count ||= count_occurrence_of_link story.short_url
 
-    if story.save
-      story
-    else story.save
-      # simply to stop the web app and notify
-      raise ActionController::RoutingError.new('Bad DB insertion')
+      if story.save
+        story
+      else story.save
+        # simply to stop the web app and notify
+        raise ActionController::IOError.new("can't insert story #{story.short_url}")
+      end
+      
+    rescue SocketError => e
+      # once encounter can't fetch the story, regard the story a bad one
+      p e.message
+      story.destroy
+      nil
     end
 
   end

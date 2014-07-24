@@ -22,8 +22,12 @@ s4 = Story.create( { tweet_id: 491282774352211970, teller_username: 'MIT',
 
 # this is a removed link, which generates socket error
 # will come back later to handle exceptions
-# s5 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview',
-#                      short_url: 'http://t.co/oJn6yx0YPc', category: tech } )
+s5 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview',
+                     short_url: 'http://t.co/oJn6yx0YPc', category: tech } )
+# this is used to test bad links
+#                     short_url: 'http://fuck.shit', category: tech } )
+#                     short_url: 'http://t.co/97TzQRuoDv', category: tech } )
+
 
 s6 = Story.create( { tweet_id: 491916694127140864, teller_username: 'ReutersBiz',
                      short_url: 'http://t.co/PCRpWpGHMe', category: biz } )
