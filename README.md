@@ -2,6 +2,8 @@
 
 ## Back-End Progress Update
 
+### The document below is depreciated, we use [FengChe](fengcheco.com) now, it is an excellent platform, you should try too.
+
 #### _确认可行性_
 
 *   已知要follow的twitter帐号,能否拿到他的tweets(through twitter api)

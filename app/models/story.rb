@@ -5,8 +5,9 @@ class Story
   field :title,            type: String
   # field :content,          type: String
   field :content_preview,  type: String
-  field :score,            type: Integer, default: 1
-  field :count,            type: Integer, default: 1
+  field :score,            type: Integer
+  field :retweet,          type: Integer
+  field :favorite,         type: Integer
   
   field :short_url,        type: String
   field :long_url,         type: String
