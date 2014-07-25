@@ -2,7 +2,6 @@ module StoriesHelper
 
   require_relative '../../config/twitter_config'
 
-  require 'net/http'
   require 'readability'
   require 'open-uri'
   require 'url_expander'
@@ -52,6 +51,7 @@ module StoriesHelper
   end
 
   def preview_of(content, num_paragraph = 10)
+    return content.slice(0, 100)
     # two extra <div><div> in the beginning
     content = content[10, content.length - 10]
     # use </pre> </p> as natural ending
@@ -83,17 +83,44 @@ module StoriesHelper
     # might be slow
   end
 
+  def retweet_of(tweet_obj)
+    tweet_obj.retweet_count
+  end
+
+  def favorite_of(tweet_obj)
+    tweet_obj.favorite_count
+  end
+
+  def score_of(retweet, favorite)
+    retweet + favorite * 1000
+  end
+
   def domain_of(url)
     head, tail = url.split("//")
     domain_name = tail.split("/").first
     head + "//" + domain_name
   end
 
+  def extract_url(text)
+    match = text.match(/http:\/\/t.co\/\S*/)
+    if match.nil?
+      nil
+    else
+      match[0]
+    end
+  end
+    
   def expand_story(story)
 
     story.teller_realname ||= profile_name_of story.teller_username
     story.long_url ||= expand_url story.short_url
     story.domain ||= domain_of story.long_url
+
+    # deal with youtube here
+    if story.domain == 'http://www.youtube.com'
+      story.destroy
+      return nil
+    end
 
     begin
       html = open(story.short_url).read
@@ -103,6 +130,11 @@ module StoriesHelper
       # this is not expected to work
       # story.count ||= count_occurrence_of_link story.short_url
 
+      t = $client.status(story.tweet_id)
+      story.retweet ||= retweet_of t
+      story.favorite ||= favorite_of t
+      story.score = score_of story.retweet, story.favorite
+
       if story.save
         story
       else story.save
@@ -110,11 +142,12 @@ module StoriesHelper
         raise ActionController::IOError.new("can't insert story #{story.short_url}")
       end
       
-    rescue SocketError => e
+    rescue SocketError, RuntimeError => e
       # once encounter can't fetch the story, regard the story a bad one
       p e.message
       story.destroy
-      nil
+      return nil
+      
     end
 
   end
