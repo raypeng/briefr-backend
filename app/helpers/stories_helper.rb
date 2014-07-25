@@ -7,6 +7,8 @@ module StoriesHelper
   require 'url_expander'
   require 'html_press'
 
+  class DuplicateLinkError < Exception; end
+  
   # 4 steps to get content
   # 1) replcae <pre>xxx</pre> by DUMMY-STRING
   # 2) process html with Readability
@@ -139,10 +141,14 @@ module StoriesHelper
         story
       else story.save
         # simply to stop the web app and notify
-        raise ActionController::IOError.new("can't insert story #{story.short_url}")
+        if story.errors.messages == { :short_url => ["is already taken"] }
+          raise DuplicateLinkError.new
+        else
+          raise IOError.new("can't insert story #{story.short_url}")
+        end
       end
       
-    rescue SocketError, RuntimeError => e
+    rescue DuplicateLinkError, SocketError, RuntimeError => e
       # once encounter can't fetch the story, regard the story a bad one
       p e.message
       story.destroy

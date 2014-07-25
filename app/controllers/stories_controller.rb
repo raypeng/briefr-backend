@@ -34,7 +34,7 @@ class StoriesController < ApplicationController
           story.tweet_id = tweet.id
           story.teller_username = teller.username
           story.category = category
-          # story = preprocess story
+          story = expand_story story
           stories << story
           
         end
@@ -43,7 +43,7 @@ class StoriesController < ApplicationController
       
     end
     
-    stories.each do |story|
+    stories.compact.each do |story|
       story.save
     end
     

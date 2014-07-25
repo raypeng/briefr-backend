@@ -2,7 +2,7 @@
 
 ## Back-End Progress Update
 
-### The document below is depreciated, we use [FengChe](fengcheco.com) now, it is an excellent platform, you should try too.
+### The document below is depreciated, we use [FengChe](https://fengcheco.com) now, it is an excellent platform, you should try too.
 
 #### _确认可行性_
 

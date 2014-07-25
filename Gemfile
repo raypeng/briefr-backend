@@ -8,6 +8,9 @@ gem 'rails', '4.1.4'
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+# Use whenever to schedule tasks
+gem 'whenever', :require => false
+
 # Use haml instead of erb
 gem 'haml'
 

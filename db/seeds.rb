@@ -41,15 +41,15 @@ s7 = Story.create( { tweet_id: 491749840041148419, teller_username: 'KitchenDail
 
 t1 = Teller.create( { username: 'WIRED', category: tech } )
 t2 = Teller.create( { username: 'googledevs', category: tech } )
-t3 = Teller.create( { username: 'tim_cook', category: tech } )
-t4 = Teller.create( { username: 'techreview', category: tech } )
+# t3 = Teller.create( { username: 'tim_cook', category: tech } )
+# t4 = Teller.create( { username: 'techreview', category: tech } )
 
 b1 = Teller.create( { username: 'BBCBusiness', category: biz } )
 b2 = Teller.create( { username: 'ReutersBiz', category: biz } )
-b3 = Teller.create( { username: 'BloombergNews', category: biz } )
-b4 = Teller.create( { username: 'BenChu_', category: biz } )
+# b3 = Teller.create( { username: 'BloombergNews', category: biz } )
+# b4 = Teller.create( { username: 'BenChu_', category: biz } )
 
 l1 = Teller.create( { username: 'toscareno', category: life } )
 l2 = Teller.create( { username: 'HuffPostCaLiv', category: life } )
-l3 = Teller.create( { username: 'KitchenDailyCa', category: life } )
-l4 = Teller.create( { username: 'massimoBRUNO', category: life } )
+# l3 = Teller.create( { username: 'KitchenDailyCa', category: life } )
+# l4 = Teller.create( { username: 'massimoBRUNO', category: life } )
