@@ -10,6 +10,8 @@ class StoriesController < ApplicationController
   end
 
   def update
+    p "running stories.update"
+    
     stories = []
     @categories = Category.all
     @categories.each do |category|
@@ -19,7 +21,7 @@ class StoriesController < ApplicationController
       tellers.each do |teller|
         
         p teller.username
-        $client.user_timeline(teller.username).take(3).each do |tweet|
+        $client.user_timeline(teller.username).take(1).each do |tweet|
           
           p tweet.id
           retweet = retweet_of tweet

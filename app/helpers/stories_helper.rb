@@ -3,6 +3,7 @@ module StoriesHelper
   require_relative '../../config/twitter_config'
 
   require 'readability'
+  require 'sanitize'
   require 'open-uri'
   require 'url_expander'
   require 'html_press'
@@ -53,9 +54,10 @@ module StoriesHelper
   end
 
   def preview_of(content, num_paragraph = 10)
-    return content.slice(0, 100)
+    return Sanitize.fragment(content, #.slice(0, 300),
+                             Sanitize::Config::RELAXED)
     # two extra <div><div> in the beginning
-    content = content[10, content.length - 10]
+    # content = content[10, content.length - 10]
     # use </pre> </p> as natural ending
     offset = 0
     num_paragraph.times.each do

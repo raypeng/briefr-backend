@@ -19,6 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minutes do
-  runner "stories.update"
+every 2.minutes do
+  runner "stories.update", environment: "development"
+  command "echo running cron task", environment: "development"
 end

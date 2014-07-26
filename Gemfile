@@ -20,6 +20,9 @@ gem 'twitter'
 # Use readaility for capturing article content from url
 gem 'ruby-readability'
 
+# Use Sanitize to make story.content html chunk safe
+gem 'sanitize'
+
 # Use pismo for capturing article title from url
 gem 'pismo'
 
