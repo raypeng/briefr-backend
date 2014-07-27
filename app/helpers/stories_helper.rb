@@ -5,8 +5,14 @@ module StoriesHelper
   require 'readability'
   require 'sanitize'
   require 'open-uri'
-  require 'url_expander'
   require 'html_press'
+  require 'cgi'
+  require 'json'
+  require 'httparty'
+
+  IGNORED_DOMAINS = ['http://www.youtube.com',
+                     'http://downloads.bbc.co.uk'
+                    ]
 
   class DuplicateLinkError < Exception; end
   
@@ -72,9 +78,11 @@ module StoriesHelper
 
   def expand_url(short_url)
     begin
-      UrlExpander::Client.expand(short_url, :config_file =>
-                                 'config/url_expander_credentials.yml',
-                                 :limit => 50)
+      # UrlExpander::Client.expand(short_url, :config_file =>
+      # 'config/url_expander_credentials.yml',
+      #                            :limit => 50)
+      response = HTTParty.get("http://expandurl.appspot.com/expand?url=#{CGI.escape(short_url)}")
+      JSON.parse(response.body)['end_url']
     rescue Exception => e
       # if it is a bad link, bear with the old short_link
       p e.message
@@ -121,8 +129,8 @@ module StoriesHelper
     story.long_url ||= expand_url story.short_url
     story.domain ||= domain_of story.long_url
 
-    # deal with youtube here
-    if story.domain == 'http://www.youtube.com'
+    # deal with sources dont want
+    if IGNORED_DOMAINS.include? story.domain
       story.destroy
       return nil
     end

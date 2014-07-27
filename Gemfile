@@ -29,10 +29,13 @@ gem 'pismo'
 # Use html_press to make html lightweight for database
 gem 'html_press'
 
-# Use url_expander to expand shortened urls
-# this is favoured over 'expander' because of bitly configurability
+# Use API from a google app
+# http://expandurl.appspot.com/
+# this is favoured over 'expander' 'url_expander' because of the depth
 # gem 'expander'
-gem 'url_expander'
+# gem 'url_expander'
+gem 'httparty'
+gem 'json'
 
 # Use bootstrap
 gem 'bootstrap-sass'
