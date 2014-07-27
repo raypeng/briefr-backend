@@ -22,8 +22,8 @@ life = Category.create( { name: 'lifestyle' } )
 
 # this is a removed link, which generates socket error
 # will come back later to handle exceptions
-# s5 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview',
-#                      short_url: 'http://t.co/oJn6yx0YPc', category: tech } )
+s5 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview',
+                     short_url: 'http://t.co/oJn6yx0YPc', category: tech } )
 # this is used to test bad links
 #                     short_url: 'http://fuck.shit', category: tech } )
 #                     short_url: 'http://t.co/97TzQRuoDv', category: tech } )
@@ -36,23 +36,23 @@ life = Category.create( { name: 'lifestyle' } )
 #                      short_url: 'http://t.co/yF3Wlk2Mw4', category: life } )
 
 # this creates a layout mess
-# s8 = Story.create( { tweet_id: 491933267705098240, teller_username: 'KitchenDailyCa',
-#                      short_url: 'http://t.co/ZKbSpL1VBb', category: life } )
+s8 = Story.create( { tweet_id: 491933267705098240, teller_username: 'KitchenDailyCa',
+                     short_url: 'http://t.co/ZKbSpL1VBb', category: life } )
 
-# t1 = Teller.create( { username: 'WIRED', category: tech } )
-# t2 = Teller.create( { username: 'googledevs', category: tech } )
+t1 = Teller.create( { username: 'WIRED', category: tech } )
+t2 = Teller.create( { username: 'googledevs', category: tech } )
 # t3 = Teller.create( { username: 'tim_cook', category: tech } )
 # t4 = Teller.create( { username: 'techreview', category: tech } )
 
-# b1 = Teller.create( { username: 'BBCBusiness', category: biz } )
-# b2 = Teller.create( { username: 'ReutersBiz', category: biz } )
+b1 = Teller.create( { username: 'BBCBusiness', category: biz } )
+b2 = Teller.create( { username: 'ReutersBiz', category: biz } )
 # b3 = Teller.create( { username: 'BloombergNews', category: biz } )
 # b4 = Teller.create( { username: 'BenChu_', category: biz } )
 
-# l1 = Teller.create( { username: 'toscareno', category: life } )
-# l2 = Teller.create( { username: 'HuffPostCaLiv', category: life } )
+l1 = Teller.create( { username: 'toscareno', category: life } )
+l2 = Teller.create( { username: 'HuffPostCaLiv', category: life } )
 # l3 = Teller.create( { username: 'KitchenDailyCa', category: life } )
 # l4 = Teller.create( { username: 'massimoBRUNO', category: life } )
 
 # test with my own twitter account
-tt = Teller.create( { username: 'rayrpeng', category: tech } )
+# tt = Teller.create( { username: 'rayrpeng', category: tech } )

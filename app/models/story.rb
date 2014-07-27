@@ -21,6 +21,10 @@ class Story
   # field :time,             type: DateTime
 
   field :on_topic?,        type: Boolean, default: true
+
+  # class config vars
+  @@NUM_STORIES_PER_CATEGORY_FETCH = 5
+  @@NUM_STORIES_PER_CATEGORY_DISPLAY = 3
   
   # model relations
   belongs_to :category
@@ -32,39 +36,44 @@ class Story
   
   def self.update_stories_from_timeline
     
-    stories = []
+    stories = {}
     @categories = Category.all
     @categories.each do |category|
 
+      stories[category] = []
       tellers = category.tellers
       tellers.each do |teller|
 
-        $client.user_timeline(teller.username).take(1).each do |tweet|
+        $client.user_timeline(teller.username).take(@@NUM_STORIES_PER_CATEGORY_FETCH).each do |tweet|
 
           story = Story.new
-          story.retweet = retweet_of tweet
-          story.favorite = favorite_of tweet
           story.short_url = extract_url tweet.full_text
-          
+
           # skip those without links
           if story.short_url.nil?
             next
           end
           
+          story.retweet = retweet_of tweet
+          story.favorite = favorite_of tweet
           story.tweet_id = tweet.id
           story.teller_username = teller.username
           story.category = category
           story = expand_story story
-          stories << story
+          stories[category] << story
           
         end
       end
     end
-    
-    stories.compact.each do |story|
-      story.save
+
+    stories.keys.each do |category|
+      stories[category].compact!.sort_by! { |story| story.score }
+      stories[category].slice!(0, @@NUM_STORIES_EACH_CATEGORY_DISPLAY)
+      stories[category].each do |story|
+        story.save
+      end
     end
-  
+    
   end
 
   def prepare
@@ -72,4 +81,3 @@ class Story
   end
 
 end
-n

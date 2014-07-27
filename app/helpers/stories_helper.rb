@@ -73,11 +73,12 @@ module StoriesHelper
   def expand_url(short_url)
     begin
       UrlExpander::Client.expand(short_url, :config_file =>
-                                 'config/url_expander_credentials.yml')
+                                 'config/url_expander_credentials.yml',
+                                 :limit => 50)
     rescue Exception => e
       # if it is a bad link, bear with the old short_link
       p e.message
-      p "link can't be fetched or expanded"
+      p "#{short_url} can't be fetched or expanded"
       short_url
     end
   end
@@ -96,7 +97,7 @@ module StoriesHelper
   end
 
   def score_of(retweet, favorite)
-    retweet + favorite * 1000
+    retweet + favorite * 2
   end
 
   def domain_of(url)
@@ -127,7 +128,7 @@ module StoriesHelper
     end
 
     begin
-      html = open(story.short_url).read
+      html = open(story.short_url, :read_timeout => 5).read
       story.title ||= title_from_html html
       story.content_preview ||= preview_of content_from html, story.long_url
 
@@ -144,13 +145,13 @@ module StoriesHelper
       else story.save
         # simply to stop the web app and notify
         if story.errors.messages == { :short_url => ["is already taken"] }
-          raise DuplicateLinkError.new
+          raise DuplicateLinkError.new("#{story.short_url} already in db")
         else
           raise IOError.new("can't insert story #{story.short_url}")
         end
       end
       
-    rescue DuplicateLinkError, SocketError, RuntimeError => e
+    rescue Exception => e
       # once encounter can't fetch the story, regard the story a bad one
       p e.message
       story.destroy

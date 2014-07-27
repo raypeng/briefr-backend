@@ -1,6 +1,8 @@
+.debug
+  = "Total Story.count: #{Story.count}"
 - @stories.each do |story|
   .debug
-    <!-- = debug story -->
+    = debug "long_url: #{story.long_url}, re: #{story.retweet}, fav: #{story.favorite}"
   .post
     .otherUser
     .text-right
@@ -16,8 +18,6 @@
       = link_to "@#{story.teller_realname}", "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}"
     %h2.twitterTitle
       = story.title
-    .score
-      = "Score: #{story.score}"
     .content
       = raw story.content_preview
     .readMore
