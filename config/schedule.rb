@@ -20,6 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 2.minutes do
-  runner "stories.update", environment: "development"
-  command "echo running cron task", environment: "development"
+  runner "Story.update_stories_from_timeline", environment: "development"
 end
