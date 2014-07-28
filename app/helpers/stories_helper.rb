@@ -81,8 +81,12 @@ module StoriesHelper
       # UrlExpander::Client.expand(short_url, :config_file =>
       # 'config/url_expander_credentials.yml',
       #                            :limit => 50)
-      response = HTTParty.get("http://expandurl.appspot.com/expand?url=#{CGI.escape(short_url)}")
-      JSON.parse(response.body)['end_url']
+      
+      # response = HTTParty.get("http://expandurl.appspot.com/expand?url=#{CGI.escape(short_url)}")
+      # JSON.parse(response.body)['end_url']
+      
+      response = HTTParty.get("http://api.longurl.org/v2/expand?url=#{CGI.escape(short_url)}&format=json")
+      JSON.parse(response.body)['long-url']
     rescue Exception => e
       # if it is a bad link, bear with the old short_link
       p e.message
