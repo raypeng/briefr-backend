@@ -13,6 +13,8 @@ module StoriesHelper
   IGNORED_DOMAINS = ['http://www.youtube.com',
                      'http://downloads.bbc.co.uk'
                     ]
+  
+  NUM_PARAGRAPH_PREVIEW_DEFAULT
 
   class DuplicateLinkError < Exception; end
   
@@ -59,21 +61,24 @@ module StoriesHelper
     $client.user(username).name
   end
 
-  def preview_of(content, num_paragraph = 10)
-    return Sanitize.fragment(content, #.slice(0, 300),
-                             Sanitize::Config::RELAXED)
+  def preview_of(content, num_paragraph = NUM_PARAGRAPH_PREVIEW_DEFAULT)
+    # return Sanitize.fragment(content, #.slice(0, 300),
+    # Sanitize::Config::RELAXED)
+    
     # two extra <div><div> in the beginning
     # content = content[10, content.length - 10]
     # use </pre> </p> as natural ending
     offset = 0
     num_paragraph.times.each do
-      temp = content.index(/<pre|<p/, offset)
+      temp = content.index(/<\/pre|<\/p/, offset)
       if temp.nil?
+        offset = 1
         break
       end
       offset = temp + 1
     end
-    content.slice(0, offset - 1) + " <p>...</p>"
+    output = content.slice(0, offset - 1) + " <p>...</p>"
+    Sanitize.fragment(output, Sanitize::Config::RELAXED)
   end
 
   def expand_url(short_url)
@@ -151,22 +156,11 @@ module StoriesHelper
       story.retweet ||= retweet_of t
       story.favorite ||= favorite_of t
       story.score = score_of story.retweet, story.favorite
-
-      if story.save
-        story
-      else story.save
-        # simply to stop the web app and notify
-        if story.errors.messages == { :short_url => ["is already taken"] }
-          raise DuplicateLinkError.new("#{story.short_url} already in db")
-        else
-          raise IOError.new("can't insert story #{story.short_url}")
-        end
-      end
+      return story
       
     rescue Exception => e
       # once encounter can't fetch the story, regard the story a bad one
       p e.message
-      story.destroy
       return nil
       
     end

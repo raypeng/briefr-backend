@@ -64,7 +64,8 @@ class Story
           story.tweet_id = tweet.id
           story.teller_username = teller.username
           story.category = category
-          story = expand_story story
+          story.score = score_of story.retweet, story.favorite
+          # story = expand_story story
           stories[category] << story
           
         end
@@ -74,8 +75,25 @@ class Story
     stories.keys.each do |category|
       stories[category].compact!
       stories[category] = stories[category].sort_by { |story| -story.score }
-      stories[category][0...@@NUM_STORIES_EACH_CATEGORY_SAVE].each do |story|
-        story.save
+      stories[category][0...@@NUM_STORIES_PER_CATEGORY_SAVE].each do |story|
+        story = expand_story story
+
+        if not story.nil?
+          begin
+            if story.save
+              p "story with link #{story.short_url} saved"
+            else
+              if story.errors.messages == { :short_url => ["is already taken"] }
+                raise DuplicateLinkError.new("#{story.short_url} already in db")
+              else
+                raise IOError.new("can't insert story #{story.short_url}")
+              end
+            end
+          rescue Exception => e
+            p e.message
+          end
+        end
+
       end
     end
     
