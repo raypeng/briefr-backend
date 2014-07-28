@@ -22,6 +22,8 @@ class Story
 
   field :on_topic?,        type: Boolean, default: true
 
+  field :token,            type: Integer
+  
   # class config vars
   @@NUM_STORIES_PER_CATEGORY_FETCH = 5
   @@NUM_STORIES_PER_CATEGORY_DISPLAY = 3
@@ -32,6 +34,9 @@ class Story
   # validations
   validates_presence_of :short_url, :tweet_id, :teller_username, :category
   validates_uniqueness_of :short_url
+
+  # add token before create
+  before_create :assign_token
 
   
   def self.update_stories_from_timeline
@@ -80,4 +85,25 @@ class Story
     expand_story self
   end
 
+  private
+
+  def assign_token
+    self.token = Sequence.generate_id(:story)
+  end
+  
+end
+
+class Sequence
+  
+  include Mongoid::Document
+  
+  field :object
+  field :last_id, type: Integer, default: 0
+
+  def self.generate_id(object)
+    seq = Sequence.find_or_create_by object: object
+    seq.inc last_id: 1
+    seq.last_id
+  end
+  
 end
