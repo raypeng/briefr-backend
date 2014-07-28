@@ -25,8 +25,8 @@ class Story
   field :token,            type: Integer
   
   # class config vars
-  @@NUM_STORIES_PER_CATEGORY_FETCH = 5
-  @@NUM_STORIES_PER_CATEGORY_DISPLAY = 3
+  @@NUM_STORIES_PER_CATEGORY_FETCH = 10
+  @@NUM_STORIES_PER_CATEGORY_SAVE = 5
   
   # model relations
   belongs_to :category
@@ -72,8 +72,8 @@ class Story
     end
 
     stories.keys.each do |category|
-      stories[category].compact!.sort_by! { |story| story.score }
-      stories[category].slice!(0, @@NUM_STORIES_EACH_CATEGORY_DISPLAY)
+      stories[category].compact!.sort_by! { |story| -story.score }
+      stories[category].slice! 0, @@NUM_STORIES_EACH_CATEGORY_SAVE
       stories[category].each do |story|
         story.save
       end
@@ -88,7 +88,7 @@ class Story
   private
 
   def assign_token
-    self.token = Sequence.generate_id(:story)
+    self.token = Sequence.generate_id :story
   end
   
 end
