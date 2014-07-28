@@ -14,7 +14,8 @@ module StoriesHelper
                      'http://downloads.bbc.co.uk'
                     ]
   
-  NUM_PARAGRAPH_PREVIEW_DEFAULT
+  NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
+  NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
 
   class DuplicateLinkError < Exception; end
   
@@ -61,7 +62,10 @@ module StoriesHelper
     $client.user(username).name
   end
 
-  def preview_of(content, num_paragraph = NUM_PARAGRAPH_PREVIEW_DEFAULT)
+  def preview_of(content,
+                 num_paragraph = NUM_PARAGRAPH_PREVIEW_DEFAULT,
+                 num_character = NUM_CHARACTER_PREVIEW_THRESHOLD)
+                 
     # return Sanitize.fragment(content, #.slice(0, 300),
     # Sanitize::Config::RELAXED)
     
@@ -69,7 +73,7 @@ module StoriesHelper
     # content = content[10, content.length - 10]
     # use </pre> </p> as natural ending
     offset = 0
-    num_paragraph.times.each do
+    while offset < num_character do
       temp = content.index(/<\/pre|<\/p/, offset)
       if temp.nil?
         offset = 1
