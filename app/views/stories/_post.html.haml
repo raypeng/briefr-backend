@@ -20,6 +20,8 @@
       = story.title
     .content
       = raw story.content_preview
+    .individual-view
+      = link_to "Click for individual view", "/stories/#{story.token}"
     .readMore
       %h5
         Read more at
