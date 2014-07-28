@@ -17,6 +17,8 @@ module StoriesHelper
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
 
+  @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
+
   class DuplicateLinkError < Exception; end
   
   # 4 steps to get content
@@ -98,8 +100,8 @@ module StoriesHelper
       JSON.parse(response.body)['long-url']
     rescue Exception => e
       # if it is a bad link, bear with the old short_link
-      p e.message
-      p "#{short_url} can't be fetched or expanded"
+      @@logger.error e.message
+      @@logger.error "#{short_url} can't be fetched or expanded"
       short_url
     end
   end
@@ -164,7 +166,7 @@ module StoriesHelper
       
     rescue Exception => e
       # once encounter can't fetch the story, regard the story a bad one
-      p e.message
+      @@logger.error "in expand_story: #{e.message}"
       return nil
       
     end

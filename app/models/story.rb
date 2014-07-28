@@ -1,5 +1,7 @@
 class Story
 
+  require 'logger'
+  
   include StoriesHelper
   extend StoriesHelper
   
@@ -27,6 +29,7 @@ class Story
   # class config vars
   @@NUM_STORIES_PER_CATEGORY_FETCH = 10
   @@NUM_STORIES_PER_CATEGORY_SAVE = 5
+  @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
   
   # model relations
   belongs_to :category
@@ -40,6 +43,8 @@ class Story
 
   
   def self.update_stories_from_timeline
+
+    @@logger.info "updating stories"
     
     stories = {}
     @categories = Category.all
@@ -81,7 +86,7 @@ class Story
         if not story.nil?
           begin
             if story.save
-              p "story with link #{story.short_url} saved"
+              @@logger.info "story with link #{story.short_url} saved"
             else
               if story.errors.messages == { :short_url => ["is already taken"] }
                 raise DuplicateLinkError.new("#{story.short_url} already in db")
@@ -90,7 +95,7 @@ class Story
               end
             end
           rescue Exception => e
-            p e.message
+            @@logger.error "story not saved: #{e.message}"
           end
         end
 

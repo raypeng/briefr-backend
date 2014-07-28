@@ -9,6 +9,8 @@ class StoriesController < ApplicationController
     # @stories.map! { |story| story.prepare }
     # @stories.compact
     @stories = @stories.sort_by { |story| -story.score }
+
+    $logger.info "stories#index count: #{@stories.count}"
     
   end
 
@@ -16,6 +18,8 @@ class StoriesController < ApplicationController
     
     @stories = Story.where token: params[:token]
 
+    $logger.info "stories#show #{params[:token]}"
+    
     render 'stories/index'
     
   end

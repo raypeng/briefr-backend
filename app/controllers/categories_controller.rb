@@ -11,6 +11,8 @@ class CategoriesController < ApplicationController
     @stories = @stories.sort_by { |story| -story.score }
     @stories = @stories[0...@@NUM_STORIES_PER_CATEGORY_DISPLAY]
     # @stories = @stories.sort_by { |story| -story.token }
+
+    $logger.info "categories#show #{params[:name]}"
     
     render 'stories/index'
     
