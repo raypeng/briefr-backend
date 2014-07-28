@@ -22,8 +22,8 @@ life = Category.create( { name: 'lifestyle' } )
 
 # this is a removed link, which generates socket error
 # will come back later to handle exceptions
-s5 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview',
-                     short_url: 'http://t.co/oJn6yx0YPc', category: tech } )
+# s5 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview',
+#                      short_url: 'http://t.co/oJn6yx0YPc', category: tech } )
 # this is used to test bad links
 #                     short_url: 'http://fuck.shit', category: tech } )
 #                     short_url: 'http://t.co/97TzQRuoDv', category: tech } )
@@ -36,8 +36,8 @@ s5 = Story.create( { tweet_id: 491265996414390273, teller_username: 'techreview'
 #                      short_url: 'http://t.co/yF3Wlk2Mw4', category: life } )
 
 # this creates a layout mess
-s8 = Story.create( { tweet_id: 491933267705098240, teller_username: 'KitchenDailyCa',
-                     short_url: 'http://t.co/ZKbSpL1VBb', category: life } )
+# s8 = Story.create( { tweet_id: 491933267705098240, teller_username: 'KitchenDailyCa',
+#                      short_url: 'http://t.co/ZKbSpL1VBb', category: life } )
 
 t1 = Teller.create( { username: 'WIRED', category: tech } )
 t2 = Teller.create( { username: 'googledevs', category: tech } )

@@ -6,10 +6,12 @@ class CategoriesController < ApplicationController
 
     @category = Category.find_by name: params[:name]
     @stories = @category.stories.where(on_topic?: true)
-    # get stories newest on top
-    @stories.sort_by! { |story| -story.token }
-    @stories = @stories[0...@@NUM_STORIES_PER_CATEGORY_DISPLAY]
 
+    # get stories highest score on top
+    @stories = @stories.sort_by { |story| -story.score }
+    @stories = @stories[0...@@NUM_STORIES_PER_CATEGORY_DISPLAY]
+    # @stories = @stories.sort_by { |story| -story.token }
+    
     render 'stories/index'
     
   end

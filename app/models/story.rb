@@ -72,9 +72,9 @@ class Story
     end
 
     stories.keys.each do |category|
-      stories[category].compact!.sort_by! { |story| -story.score }
-      stories[category].slice! 0, @@NUM_STORIES_EACH_CATEGORY_SAVE
-      stories[category].each do |story|
+      stories[category].compact!
+      stories[category] = stories[category].sort_by { |story| -story.score }
+      stories[category][0...@@NUM_STORIES_EACH_CATEGORY_SAVE].each do |story|
         story.save
       end
     end
