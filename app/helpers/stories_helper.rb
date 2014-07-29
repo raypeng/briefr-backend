@@ -11,7 +11,8 @@ module StoriesHelper
   require 'httparty'
 
   IGNORED_DOMAINS = ['http://www.youtube.com',
-                     'http://downloads.bbc.co.uk'
+                     'http://downloads.bbc.co.uk',
+                     'http://instagram.com'
                     ]
   
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
@@ -49,10 +50,11 @@ module StoriesHelper
     pre_list, replaced = extract_pre_from html
     params = { :tags => %w[div span p a b i pre h1 h2 h3 h4 h5 h6 strong small em
                           blockquote ul ol li img],
-               :attributes => %w[href src] }
+               :attributes => %w[href src alt] }
     html = HtmlPress.press Readability::Document.new(replaced, params).content
     domain = domain_of url
-    add_pre(add_domain(html, domain), pre_list)
+    output = add_pre(add_domain(html, domain), pre_list)
+    Sanitize.fragment(output, Sanitize::Config::RELAXED)
     
   end
 
@@ -74,17 +76,21 @@ module StoriesHelper
     # two extra <div><div> in the beginning
     # content = content[10, content.length - 10]
     # use </pre> </p> as natural ending
-    offset = 0
-    while offset < num_character do
-      temp = content.index(/<\/pre|<\/p/, offset)
-      if temp.nil?
-        offset = 1
-        break
+    if content.length < num_character
+      content
+    else
+      offset = 0
+      while offset < num_character do
+        temp = content.index(/<\/pre|<\/p/, offset)
+        if temp.nil?
+          offset = 1
+          break
+        end
+        offset = temp + 1
       end
-      offset = temp + 1
+      output = content.slice(0, offset - 1) + " <p>...</p>"
+      Sanitize.fragment(output, Sanitize::Config::RELAXED)
     end
-    output = content.slice(0, offset - 1) + " <p>...</p>"
-    Sanitize.fragment(output, Sanitize::Config::RELAXED)
   end
 
   def expand_url(short_url)
@@ -153,7 +159,8 @@ module StoriesHelper
     begin
       html = open(story.short_url, :read_timeout => 5).read
       story.title ||= title_from_html html
-      story.content_preview ||= preview_of content_from html, story.long_url
+      story.content ||= content_from html, story.long_url
+      story.content_preview = preview_of story.content
 
       # this is not expected to work
       # story.count ||= count_occurrence_of_link story.short_url

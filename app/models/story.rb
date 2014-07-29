@@ -8,7 +8,7 @@ class Story
   include Mongoid::Document
   
   field :title,            type: String
-  # field :content,          type: String
+  field :content,          type: String
   field :content_preview,  type: String
   field :score,            type: Integer
   field :retweet,          type: Integer
