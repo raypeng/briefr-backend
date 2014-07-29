@@ -17,6 +17,7 @@ module StoriesHelper
   
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
+  NUM_RETWEETERS_DISPLAY = 3
 
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
@@ -50,8 +51,10 @@ module StoriesHelper
     pre_list, replaced = extract_pre_from html
     params = { :tags => %w[div span p a b i pre h1 h2 h3 h4 h5 h6 strong small em
                           blockquote ul ol li img],
-               :attributes => %w[href src alt] }
+               :attributes => %w[href src] }
     html = HtmlPress.press Readability::Document.new(replaced, params).content
+    html.gsub! /(<img src=\".*?\")/, "\\1 alt=\"\""
+    # html.gsub! /(<img src=\".*?\")/, "\\1 onError=\"this.style.display='none';\""
     domain = domain_of url
     output = add_pre(add_domain(html, domain), pre_list)
     Sanitize.fragment(output, Sanitize::Config::RELAXED)
@@ -59,7 +62,7 @@ module StoriesHelper
   end
 
   def title_from_html(html)
-    Readability::Document.new(html).title.delete('\t').delete('\n')
+    Readability::Document.new(html).title.gsub! /\t/, ""
   end
 
   def profile_name_of(username)
@@ -121,6 +124,20 @@ module StoriesHelper
     tweet_obj.retweet_count
   end
 
+  def retweeters_of(tweet_obj)
+    users = $client.retweeters_of tweet_obj, { :count => 100 }
+    @@logger.info "overall: #{users.length}"
+    users = users.sort_by { |user| -user.followers_count }
+    usernames = users.map { |user| user.screen_name }
+    usernames = usernames[0...NUM_RETWEETERS_DISPLAY]
+    # if can't load retweeters, just display the tweet owner
+    if usernames.empty?
+      "@#{tweet_obj.user.screen_name}"
+    else
+      "@" + usernames.join(",@")
+    end
+  end
+  
   def favorite_of(tweet_obj)
     tweet_obj.favorite_count
   end
@@ -143,7 +160,7 @@ module StoriesHelper
       match[0]
     end
   end
-    
+
   def expand_story(story)
 
     story.teller_realname ||= profile_name_of story.teller_username
@@ -168,6 +185,7 @@ module StoriesHelper
       t = $client.status(story.tweet_id)
       story.retweet ||= retweet_of t
       story.favorite ||= favorite_of t
+      story.retweeters ||= retweeters_of t
       story.score = score_of story.retweet, story.favorite
       return story
       

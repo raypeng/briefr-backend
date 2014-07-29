@@ -19,11 +19,13 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find params[:id]
+    $logger.info "stories#edit #{params[:id]}"
   end
 
   def update
     @story = Story.find params[:id]
     @story.update(story_params)
+    $logger.info "stories#edit #{params[:id]}"
     redirect_to '/'
   end
 

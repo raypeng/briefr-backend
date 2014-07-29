@@ -13,6 +13,7 @@ class Story
   field :score,            type: Integer
   field :retweet,          type: Integer
   field :favorite,         type: Integer
+  field :retweeters,       type: String
   
   field :short_url,        type: String
   field :long_url,         type: String
@@ -30,7 +31,7 @@ class Story
   @@NUM_STORIES_PER_CATEGORY_FETCH = 10
   @@NUM_STORIES_PER_CATEGORY_SAVE = 5
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
-  
+
   # model relations
   belongs_to :category
 
@@ -86,16 +87,17 @@ class Story
         if not story.nil?
           begin
             if story.save
-              @@logger.info "story with link #{story.short_url} saved"
+              @@logger.info "#{story.short_url} saved"
             else
               if story.errors.messages == { :short_url => ["is already taken"] }
+                @@logger.info "#{story.short_url} already in db"
                 raise DuplicateLinkError.new("#{story.short_url} already in db")
               else
+                @@logger.error "#{story.short_url} can't be inserted"
                 raise IOError.new("can't insert story #{story.short_url}")
               end
             end
           rescue Exception => e
-            @@logger.error "story not saved: #{e.message}"
           end
         end
 
