@@ -30,7 +30,6 @@ class Story
   # class config vars
   @@NUM_STORIES_PER_CATEGORY_FETCH = 10
   @@NUM_STORIES_PER_CATEGORY_SAVE = 5
-  @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
   # model relations
   belongs_to :category
@@ -45,6 +44,7 @@ class Story
   
   def self.update_stories_from_timeline
 
+    @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
     @@logger.info "updating stories"
     
     stories = {}

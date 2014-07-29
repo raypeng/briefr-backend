@@ -19,6 +19,11 @@ module StoriesHelper
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
   NUM_RETWEETERS_DISPLAY = 3
 
+  MY_SANITIZE_CONFIG = Sanitize::Config.merge(Sanitize::Config::RELAXED,
+                                              :attributes => {
+                                                'img' => ['onError']
+                                              } )
+
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
   class DuplicateLinkError < Exception; end
@@ -33,12 +38,14 @@ module StoriesHelper
     def extract_pre_from(html)
       regex = /<pre.*?>.*?<\/pre>/m
       pre_list = html.scan regex
-      html.gsub!(regex, 'DUMMY-STRING')
+      html.gsub! regex, 'DUMMY-STRING'
       [pre_list, html]
     end
 
     def add_domain(html, domain)
-      html.gsub(/href=\"(\/.*?\")/, "href=\"#{domain}\\1")
+      html.gsub! /a href=\"(\/.*?\")/, "a href=\"#{domain}\\1"
+      html.gsub! /img src=\"(\/.*?\")/, "img src=\"#{domain}\\1"
+      html
     end
 
     def add_pre(html, pre_list)
@@ -53,16 +60,16 @@ module StoriesHelper
                           blockquote ul ol li img],
                :attributes => %w[href src] }
     html = HtmlPress.press Readability::Document.new(replaced, params).content
-    html.gsub! /(<img src=\".*?\")/, "\\1 alt=\"\""
-    # html.gsub! /(<img src=\".*?\")/, "\\1 onError=\"this.style.display='none';\""
+    # html.gsub! /(<img src=\".*?\")/, "\\1 alt=\"\""
+    html.gsub! /(<img src=\".*?\")/, "\\1 onError=\"this.style.display='none';\""
     domain = domain_of url
     output = add_pre(add_domain(html, domain), pre_list)
-    Sanitize.fragment(output, Sanitize::Config::RELAXED)
+    Sanitize.fragment(output, MY_SANITIZE_CONFIG)
     
   end
 
   def title_from_html(html)
-    Readability::Document.new(html).title.gsub! /\t/, ""
+    Readability::Document.new(html).title.gsub /\t/, ""
   end
 
   def profile_name_of(username)
@@ -73,14 +80,12 @@ module StoriesHelper
                  num_paragraph = NUM_PARAGRAPH_PREVIEW_DEFAULT,
                  num_character = NUM_CHARACTER_PREVIEW_THRESHOLD)
                  
-    # return Sanitize.fragment(content, #.slice(0, 300),
-    # Sanitize::Config::RELAXED)
-    
     # two extra <div><div> in the beginning
     # content = content[10, content.length - 10]
+    
     # use </pre> </p> as natural ending
     if content.length < num_character
-      content
+      output = content + " <p>...</p>"
     else
       offset = 0
       while offset < num_character do
@@ -92,8 +97,8 @@ module StoriesHelper
         offset = temp + 1
       end
       output = content.slice(0, offset - 1) + " <p>...</p>"
-      Sanitize.fragment(output, Sanitize::Config::RELAXED)
     end
+    Sanitize.fragment(output, MY_SANITIZE_CONFIG)
   end
 
   def expand_url(short_url)
@@ -116,8 +121,8 @@ module StoriesHelper
   end
 
   def count_occurrence_of_link(url)
-    $client.search(url).count
     # might be slow
+    $client.search(url).count
   end
 
   def retweet_of(tweet_obj)
@@ -126,7 +131,7 @@ module StoriesHelper
 
   def retweeters_of(tweet_obj)
     users = $client.retweeters_of tweet_obj, { :count => 100 }
-    @@logger.info "overall: #{users.length}"
+    @@logger.debug "overall: #{users.length}"
     users = users.sort_by { |user| -user.followers_count }
     usernames = users.map { |user| user.screen_name }
     usernames = usernames[0...NUM_RETWEETERS_DISPLAY]
@@ -161,6 +166,10 @@ module StoriesHelper
     end
   end
 
+  def sanitize(html)
+    Sanitize.fragment(html, MY_SANITIZE_CONFIG)
+  end
+  
   def expand_story(story)
 
     story.teller_realname ||= profile_name_of story.teller_username

@@ -12,8 +12,8 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @stories = Story.where token: params[:token]
-    $logger.info "stories#show #{params[:token]}"
+    @stories = Story.where token: params[:id]
+    $logger.info "stories#show #{params[:id]}"
     render 'stories/index'
   end
 
@@ -24,7 +24,10 @@ class StoriesController < ApplicationController
 
   def update
     @story = Story.find params[:id]
-    @story.update(story_params)
+    p = story_params
+    p[:content] = sanitize p[:content]
+    p[:content_preview] = sanitize p[:content_preview]
+    @story.update(p)
     $logger.info "stories#edit #{params[:id]}"
     redirect_to '/'
   end
