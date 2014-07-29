@@ -3,6 +3,8 @@
 - @stories.each do |story|
   .debug
     = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, token: #{story.token}"
+  .review
+    = link_to "Review", edit_story_path(story), { :id => story.id }
   .post
     .otherUser
     .text-right

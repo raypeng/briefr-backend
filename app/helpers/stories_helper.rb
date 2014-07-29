@@ -59,7 +59,7 @@ module StoriesHelper
   end
 
   def title_from_html(html)
-    Readability::Document.new(html).title
+    Readability::Document.new(html).title.delete('\t').delete('\n')
   end
 
   def profile_name_of(username)

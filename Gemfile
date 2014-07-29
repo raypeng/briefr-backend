@@ -12,7 +12,7 @@ gem 'bson_ext'
 gem 'whenever', :require => false
 
 # Use haml instead of erb
-gem 'haml'
+gem 'haml-rails'
 
 # Use Twitter API wrapper
 gem 'twitter'
