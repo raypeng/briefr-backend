@@ -33,6 +33,7 @@ module Briefr
 
     path = Rails.root.join('log', 'logger.log')
     $logger = Logger.new(path)
+    $logger.sev_threshold = Logger::INFO
     $logger.info "application up"
     
   end

@@ -10,6 +10,7 @@ class Story
   field :title,            type: String
   field :content,          type: String
   field :content_preview,  type: String
+  field :image,            type: String
   field :score,            type: Integer
   field :retweet,          type: Integer
   field :favorite,         type: Integer
@@ -28,8 +29,8 @@ class Story
   field :token,            type: Integer
   
   # class config vars
-  @@NUM_STORIES_PER_CATEGORY_FETCH = 10
-  @@NUM_STORIES_PER_CATEGORY_SAVE = 5
+  @@NUM_STORIES_PER_CATEGORY_FETCH = 30
+  @@NUM_STORIES_PER_CATEGORY_SAVE = 20
 
   # model relations
   belongs_to :category
@@ -45,16 +46,21 @@ class Story
   def self.update_stories_from_timeline
 
     @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
+    @@logger.sev_threshold = Logger::INFO
     @@logger.info "updating stories"
     
     stories = {}
     @categories = Category.all
     @categories.each do |category|
 
+      @@logger.debug "category: #{category.name}"
+      
       stories[category] = []
       tellers = category.tellers
       tellers.each do |teller|
 
+        @@logger.debug "teller: #{teller.username}"
+        
         $client.user_timeline(teller.username).take(@@NUM_STORIES_PER_CATEGORY_FETCH).each do |tweet|
 
           story = Story.new
@@ -103,6 +109,8 @@ class Story
 
       end
     end
+
+    @@logger.close
     
   end
 

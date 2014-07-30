@@ -19,11 +19,6 @@ module StoriesHelper
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
   NUM_RETWEETERS_DISPLAY = 3
 
-  MY_SANITIZE_CONFIG = Sanitize::Config.merge(Sanitize::Config::RELAXED,
-                                              :attributes => {
-                                                'img' => ['onError']
-                                              } )
-
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
   class DuplicateLinkError < Exception; end
@@ -61,11 +56,10 @@ module StoriesHelper
                           blockquote ul ol li img],
                :attributes => %w[href src] }
     html = HtmlPress.press Readability::Document.new(replaced, params).content
-    # html.gsub! /(<img src=\".*?\")/, "\\1 alt=\"\""
-    html.gsub! /(<img src=\".*?\")/, "\\1 onError=\"this.style.display='none';\""
     domain = domain_of url
     output = add_pre(add_domain(html, domain), pre_list)
-    Sanitize.fragment(output, MY_SANITIZE_CONFIG)
+    output = Sanitize.fragment(output, Sanitize::Config::RELAXED)
+    output.gsub /<img /, "<img onError=\"this.style.display='none';\""
     
   end
 
@@ -99,7 +93,16 @@ module StoriesHelper
       end
       output = content.slice(0, offset - 1) + " <p>...</p>"
     end
-    Sanitize.fragment(output, MY_SANITIZE_CONFIG)
+    Sanitize.fragment(output, Sanitize::Config::RELAXED)
+  end
+
+  def image_of(html)
+    m = html.match /<img src=.*?>/
+    if m.nil?
+      ""
+    else
+      m[0]
+    end
   end
 
   def expand_url(short_url)
@@ -118,9 +121,10 @@ module StoriesHelper
       else
         long_url
       end
-    rescue Exception => e
-      # if it is a bad link, bear with the old short_link
+    rescue LinkExpansionError => e
       @@logger.error e.message
+      short_url
+    rescue Exception => e
       @@logger.error "#{short_url} can't be fetched or expanded"
       short_url
     end
@@ -193,6 +197,7 @@ module StoriesHelper
       story.title ||= title_from_html html
       story.content ||= content_from html, story.long_url
       story.content_preview = preview_of story.content
+      story.image ||= image_of story.content
 
       # this is not expected to work
       # story.count ||= count_occurrence_of_link story.short_url
