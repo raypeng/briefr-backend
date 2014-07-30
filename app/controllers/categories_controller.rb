@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   def show
 
     @category = Category.find_by name: params[:name]
-    @stories = @category.stories.where(on_topic?: true)
+    @stories = @category.stories.where(on_topic: true)
 
     # get stories highest score on top
     @stories = @stories.sort_by { |story| -story.score }

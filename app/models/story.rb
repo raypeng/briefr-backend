@@ -23,7 +23,7 @@ class Story
   field :teller_realname,  type: String
   # field :time,             type: DateTime
 
-  field :on_topic?,        type: Boolean, default: true
+  field :on_topic,         type: Boolean, default: true
 
   field :token,            type: Integer
   

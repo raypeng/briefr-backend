@@ -27,6 +27,7 @@ module StoriesHelper
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
   class DuplicateLinkError < Exception; end
+  class LinkExpansionError < Exception; end
   
   # 4 steps to get content
   # 1) replcae <pre>xxx</pre> by DUMMY-STRING
@@ -111,7 +112,12 @@ module StoriesHelper
       # JSON.parse(response.body)['end_url']
       
       response = HTTParty.get("http://api.longurl.org/v2/expand?url=#{CGI.escape(short_url)}&format=json")
-      JSON.parse(response.body)['long-url']
+      long_url = JSON.parse(response.body)['long-url']
+      if long_url.nil?
+        raise LinkExpansionError.new("#{short_url} return nil from expanding API")
+      else
+        long_url
+      end
     rescue Exception => e
       # if it is a bad link, bear with the old short_link
       @@logger.error e.message

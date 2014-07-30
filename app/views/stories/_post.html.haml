@@ -2,7 +2,7 @@
   = "Total Story.count: #{Story.count}"
 - @stories.each do |story|
   .debug
-    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, token: #{story.token}"
+    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, token: #{story.token}"
   .review
     = link_to "Review", edit_story_path(story)
   .post

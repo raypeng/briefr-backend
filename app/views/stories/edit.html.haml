@@ -34,5 +34,8 @@
         = f.label :content
         %br
         = f.text_area :content, cols: 100, rows: @story.content.length / 100
+      .field
+        = f.label :on_topic
+        = f.check_box :on_topic, :checked => true
       .actions
         = f.submit

@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
 
   def index
     # Story.update_stories_from_timeline
-    @stories = Story.where(on_topic?: true)
+    @stories = Story.where(on_topic: true)
     # @stories.map! { |story| story.prepare }
     # @stories.compact
     @stories = @stories.sort_by { |story| -story.score }
@@ -29,13 +29,16 @@ class StoriesController < ApplicationController
     p[:content_preview] = sanitize p[:content_preview]
     @story.update(p)
     $logger.info "stories#edit #{params[:id]}"
+    if p[:on_topic] == false
+      $logger.info "marked off-topic by hand: #{params[:id]}"
+    end
     redirect_to '/'
   end
 
   private
 
   def story_params
-    params.require(:story).permit(:title, :content, :content_preview)
+    params.require(:story).permit(:title, :content, :content_preview, :on_topic)
   end
     
 end
