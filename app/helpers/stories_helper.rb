@@ -93,12 +93,14 @@ module StoriesHelper
       end
       output = content.slice(0, offset - 1) + " <p>...</p>"
     end
-    Sanitize.fragment(output, Sanitize::Config::RELAXED)
+    output = Sanitize.fragment(output, Sanitize::Config::RELAXED)
+    output.gsub /<img /, "<img onError=\"this.style.display='none';\""
   end
 
   def image_of(html)
-    m = html.match /<img src=.*?>/
+    m = html.match /<img .*?>/
     if m.nil?
+      # future: one predefined img for each category as placeholder
       ""
     else
       m[0]
