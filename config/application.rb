@@ -13,6 +13,8 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require "logger"
+
 module Briefr
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -28,6 +30,11 @@ module Briefr
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    path = Rails.root.join('log', 'logger.log')
+    $logger = Logger.new(path)
+    $logger.sev_threshold = Logger::INFO
+    $logger.info "application up"
     
   end
 end

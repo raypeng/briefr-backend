@@ -8,8 +8,11 @@ gem 'rails', '4.1.4'
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+# Use whenever to schedule tasks
+gem 'whenever', :require => false
+
 # Use haml instead of erb
-gem 'haml'
+gem 'haml-rails'
 
 # Use Twitter API wrapper
 gem 'twitter'
@@ -17,16 +20,22 @@ gem 'twitter'
 # Use readaility for capturing article content from url
 gem 'ruby-readability'
 
+# Use Sanitize to make story.content html chunk safe
+gem 'sanitize'
+
 # Use pismo for capturing article title from url
 gem 'pismo'
 
 # Use html_press to make html lightweight for database
 gem 'html_press'
 
-# Use url_expander to expand shortened urls
-# this is favoured over 'expander' because of bitly configurability
+# Use API from a google app
+# http://expandurl.appspot.com/
+# this is favoured over 'expander' 'url_expander' because of the depth
 # gem 'expander'
-gem 'url_expander'
+# gem 'url_expander'
+gem 'httparty'
+gem 'json'
 
 # Use bootstrap
 gem 'bootstrap-sass'

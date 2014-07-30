@@ -1,4 +1,10 @@
+.debug
+  = "Total Story.count: #{Story.count}"
 - @stories.each do |story|
+  .debug
+    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}"
+  .review
+    = link_to "Review", edit_story_path(story)
   .post
     .otherUser
     .text-right
@@ -6,18 +12,18 @@
         %small
           via
           %i{:class => "glyphicon glyphicon-user"}
-          @BillGates, @KaifuLee, @Apple, @Weijun and
+            = "#{story.retweeters} and"
           %span.badge
-            50+
+            = "#{story.retweet}+"
     %h5.twitterUser
       %i{:class => "glyphicon glyphicon-comment"}
       = link_to "@#{story.teller_realname}", "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}"
     %h2.twitterTitle
       = story.title
-    .score
-      = "Score: #{story.score}"
     .content
       = raw story.content_preview
+    .individual-view
+      = link_to "Click for individual view", "/stories/#{story.token}"
     .readMore
       %h5
         Read more at
@@ -26,4 +32,3 @@
     %br
     %br
   %hr
-
