@@ -17,7 +17,7 @@ module StoriesHelper
   
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
-  NUM_RETWEETERS_DISPLAY = 3
+  NUM_RETWEETERS_DISPLAY = 1
 
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
@@ -59,7 +59,7 @@ module StoriesHelper
     domain = domain_of url
     output = add_pre(add_domain(html, domain), pre_list)
     output = Sanitize.fragment(output, Sanitize::Config::RELAXED)
-    output.gsub /<img /, "<img onError=\"this.style.display='none';\""
+    output.gsub /<img /, "<img onError=\"this.style.display='none';\" "
     
   end
 
@@ -149,7 +149,8 @@ module StoriesHelper
     usernames = usernames[0...NUM_RETWEETERS_DISPLAY]
     # if can't load retweeters, just display the tweet owner
     if usernames.empty?
-      "@#{tweet_obj.user.screen_name}"
+      # "@#{tweet_obj.user.screen_name}"
+      ""
     else
       "@" + usernames.join(",@")
     end

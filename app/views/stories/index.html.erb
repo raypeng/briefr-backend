@@ -1,88 +1,16 @@
-<div class="container">
-<div class="no-gutter row">
-
-<!-- left side column -->
-<div class="col-md-2">
-  <div class="panel panel-default" id="chooseCategory">
-    <div class="panel-heading text-center" style="background-color:#888;color:#fff;">Category</div>
-    <div class="panel-body">
-      <h5 class = "text-center">
-      <ul class="categoryChoice nav nav-stacked">
-        <li><a href="#">Technology</a></li>
-        <li><a href="#">Business</a></li>
-        <li><a href="#">Lifestyle</a></li>
-        <li><a href="#">Topics</a></li>
-      </ul>
-      </h5>
-    </div><!--/panel body-->
-  </div><!--/panel-->
-</div><!--/end left column-->
-
-
-<!-- middle content column-->
-<div class="col-md-7" id="twitterContent">
-  <div class="panel panel-default" id="twitterPosts">
-    <div class="panel-heading text-center"  style="background-color:#555;color:#eee;">Top Stories</div>
-    <div class="panel-body">
-
-      <!-----This line for post model------>
-      <%= render 'stories/post' %>
-
-
-    </div><!--/panel-body-->
-  </div><!--/panel-->
-</div>
-  <!--/end middle column-->
-
-<!--right column-->
-<div class="col-md-3">
-  <div class="panel panel-default">
-    <div class="panel-heading text-center" style="background-color:#111;color:#fff;">More Briefr</div>
-    <div class="panel-body">
-      <div class="more text-right">
-
-        <div class = "more_cool">
-            <h3>[More] cool</h3>
-            <h5>To start a business, you need naivete;</h5>
-            <h5>A $1.5m corporate name change</h5>
-        </div>
-      <div><!--/more_cool-->
-
-      <hr>
-
-      <div class = "more_similar">
-        <h3>[More] similar</h3>
-
-        <h5><a href="#">NYJ <i class="glyphicon glyphicon-plus"></i></a></h5>
-        <h5><a href="#">WSJ <i class="glyphicon glyphicon-plus"></i></a></h5>
-        <h5><a href="#">Engadget <i class="glyphicon glyphicon-plus"></i></a></h5>
-        <h5><a href="#">TechCrunch <i class="glyphicon glyphicon-plus"></i></a></h5>
-      </div><!--/more_similar-->
-
-      <hr>
-
-      <div class="more_social">
-        <h3>[More] social</h3>
-        <h5 class = "social_image">
-        <i class="icon-2x icon-facebook"></i>&nbsp;&nbsp;&nbsp;
-        <i class="icon-2x icon-twitter"></i>&nbsp; &nbsp; &nbsp;
-        <i class="icon-2x icon-linkedin"></i>&nbsp; &nbsp;&nbsp;
-        <i class="icon-2x icon-pinterest"></i>&nbsp; &nbsp;&nbsp;
-        </h5>
-      </div><!--/more_social-->
-
-      <hr>
-
-      <div class="more_often">
-        <h3>[More] often</h3>
-            <h5>Get weekly updates!</h5>
-     </div><!--/more_often-->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="stickyheader">
+  <div class="container">
+    <div class="header_left">
+      Briefr.
     </div>
-  </div><!--/panel-->
-</div><!--/end right column-->
-</div>
-</div>
+    <div class="header_right">
+      Icon
+    </div>
+  </div>
+</nav>
 
-
-</div>
-</div>
+<div class="container">
+<br>
+  <%= render 'stories/category' %>
+  <%= render 'stories/post' %>
+</div> <!-- /container -->

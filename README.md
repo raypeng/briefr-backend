@@ -2,6 +2,7 @@
 
 ## Back-End Progress Update
 
-### This is depreciated, we use [FengChe](https://fengcheco.com) now, it is an excellent platform, you should try too.
+### This is depreciated, we use [FengChe](https://fengcheco.com) now. It is an excellent platform, you should try too.
 
-#### If you wish to see previous backend progress, visit `backend-progress-old.md`
+#### If you wish to see previous backend progress, visit `progress-old.md`
+ls

@@ -10,10 +10,13 @@ class Story
   field :title,            type: String
   field :content,          type: String
   field :content_preview,  type: String
+  field :keywords,         type: Array
   field :image,            type: String
+
   field :score,            type: Integer
-  field :retweet,          type: Integer
+  field :shared,           type: Integer
   field :favorite,         type: Integer
+  field :retweet,          type: Integer
   field :retweeters,       type: String
   
   field :short_url,        type: String
@@ -40,7 +43,7 @@ class Story
   validates_uniqueness_of :short_url
 
   # add token before create
-  before_create :assign_token
+  before_create :assign_tokenn
 
   
   def self.update_stories_from_timeline
