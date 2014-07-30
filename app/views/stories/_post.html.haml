@@ -1,9 +1,9 @@
-.debug
+.debugg
   = "Total Story.count: #{Story.count}"
   %hr
 - @stories.each do |story|
-  .debug
-    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}"
+  .debugg
+    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
   .row.post
     .post_lefthand.col-md-2
       .sharedby
@@ -19,15 +19,15 @@
             = story.title
         .col-md-2
           .content_title_img
-            = story.image
+            = raw story.image
       .content_keywords
-        /= story.keywords.join(" | ") + " | "
+        = story.keywords.join(" | ") + " | "
         = link_to "[More]", "/stories/#{story.token}"
         = " | "
         = link_to "[Review]", edit_story_path(story)
       .content_details
         %span.sharecount
-          = "Shared #{story.shared} times"
+          = "Shared #{story.shared} times | "
         %span.commentcount
           = "48 comments"
     .post_righthand.col-md-2
@@ -40,6 +40,5 @@
           = "New York Times"
         .source_secondary_detail
           = "TechCrunch"
-
   %hr
   %br
