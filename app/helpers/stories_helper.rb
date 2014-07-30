@@ -179,7 +179,7 @@ module StoriesHelper
   end
 
   def sanitize(html)
-    Sanitize.fragment(html, MY_SANITIZE_CONFIG)
+    Sanitize.fragment(html, Sanitize::Config::RELAXED)
   end
   
   def expand_story(story)
