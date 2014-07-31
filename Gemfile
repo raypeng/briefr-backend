@@ -41,7 +41,7 @@ gem 'httparty'
 gem 'json'
 
 # Use bootstrap
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '3.2.0.1'
 gem 'sprockets', '2.11.0'
 
 # Use SCSS for stylesheets

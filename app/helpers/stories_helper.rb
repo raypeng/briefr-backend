@@ -19,7 +19,8 @@ module StoriesHelper
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
   NUM_RETWEETERS_DISPLAY = 1
-  NUM_KEYWORDS_DISPLAY = 5
+  NUM_KEYWORDS_DISPLAY = 3
+  NUM_KEYWORDS_CHARACTER_THRESHOLD = 80
 
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
@@ -77,7 +78,17 @@ module StoriesHelper
       if results.nil? or results.empty?
         raise KeywordExtractionError.new("can't extract keywords from html")
       else
-        keywords = results[0...NUM_KEYWORDS_DISPLAY].map { |hash| hash["text"] }
+        # keywords = results[0...NUM_KEYWORDS_DISPLAY].map { |hash| hash["text"] }
+        keywords = ""
+        for keyword_hash in results
+          text = keyword_hash["text"]
+          if keywords.length + text.length + 3 > NUM_KEYWORDS_CHARACTER_THRESHOLD
+            break
+          else
+            keywords += text + " | "
+          end
+        end
+        keywords
       end
     rescue Exception => e
       @@logger.error e.message

@@ -219,7 +219,7 @@ PLATFORMS
 
 DEPENDENCIES
   alchemy-api-rb
-  bootstrap-sass
+  bootstrap-sass (= 3.2.0.1)
   bson_ext
   coffee-rails (~> 4.0.0)
   debugger

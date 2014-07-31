@@ -1,11 +1,12 @@
 @import 'bootstrap';
 
-@import url(http://fonts.googleapis.com/css?family=PT+Serif|PT+Serif:b|PT+Serif:i|PT+Sans|PT+Sans:b);
 @import url(http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css);
 @import url(http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css);
 
-@import url(http://getbootstrap.com/favicon.ico);
+@import url(http://fonts.googleapis.com/css?family=PT+Serif|PT+Serif:b|PT+Serif:i|PT+Sans|PT+Sans:b);
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic|Noto+Sans:400,700,400italic|Noto+Serif:400,700,400italic);
+
+@import url(http://getbootstrap.com/favicon.ico);
 
 $grayLighter: #eeeeee;
 $grayLight: #999999;
@@ -33,11 +34,11 @@ footer {
 .row {
   margin-bottom: 0px;
 }
+
 .row .row {
   margin-top: 0px;
   margin-bottom: 0;
 }
-
 
 [class*="col-"] {
   padding-top: 0px;
@@ -81,7 +82,6 @@ body {
   padding-top: 5px;
 }
 
-
 .header_middle {
   text-align: middle;
   padding-top: 20px;
@@ -120,7 +120,8 @@ body {
 }
 
 .post{
-  padding-top: 50px;
+  // padding-top: 50px;
+  padding-top: 10px;
 }
 
 .post_lefthand {
@@ -146,9 +147,9 @@ body {
   padding-right: 14px;
 }
 
-.content_trailer img {
-  max-height: 55px;
-  margin-top: 10px;
+.content_title_img img {
+  max-height: 100px;
+  // margin-top: 10px;
 }
 
 .content_title {

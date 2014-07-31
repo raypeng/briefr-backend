@@ -11,7 +11,7 @@ class Story
   field :content,          type: String
   field :content_preview,  type: String
   field :image,            type: String
-  field :keywords,         type: Array
+  field :keywords,         type: String
 
   field :score,            type: Integer
   field :shared,           type: Integer
