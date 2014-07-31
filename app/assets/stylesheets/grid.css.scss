@@ -63,7 +63,6 @@ body {
   width: 100%;
   z-index: 9999;
   background-color: rgba(255,255,255,0.8);
-  text-align: right;
   min-height: auto;
   margin-bottom: 0px;
   line-height: 20px;
@@ -75,19 +74,29 @@ body {
 .header_left {
   text-align: left;
   padding-top: 5px;
-  width: 50%;
+  width: 10%;
   float: left;
 }
 
 .header_right {
   text-align: right;
   padding-top: 5px;
-  width: 40%;
+  width: 10%;
+  display: inline-block;
+}
+
+
+.header_middle {
+  text-align: middle;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  width: 70%;
   display: inline-block;
 }
 
 .topmostrow {
-  font-size: 42px;
+  font-size: 22px;
 }
 
 .topbottomrow {
@@ -95,7 +104,7 @@ body {
 }
 
 .selected {
-  font-weight: 700;
+  font-weight: 700px;
 }
 
 .selected a {
@@ -111,12 +120,13 @@ body {
   color: #a428bc;
 }
 
-#opener {
-  padding-bottom: 20px;
-}
 
 #closer {
   padding-bottom: 20px;
+}
+
+.post{
+  padding-top: 50px;
 }
 
 .post_lefthand {
