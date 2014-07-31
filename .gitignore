@@ -21,3 +21,22 @@
 
 # Ignore Twitter App configuration file.
 /config/twitter_config.rb
+
+/.idea/
+
+*.xml
+*.iml
+
+*.iml
+
+*.xml
+
+*.iml
+
+*.xml
+
+*.xml
+
+Gemfile.lock
+
+.idea/scopes/scope_settings.xml
