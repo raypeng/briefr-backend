@@ -1,34 +1,44 @@
-.debug
+.debugg
   = "Total Story.count: #{Story.count}"
-- @stories.each do |story|
-  .debug
-    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}"
-  .review
-    = link_to "Review", edit_story_path(story)
-  .post
-    .otherUser
-    .text-right
-      %h5
-        %small
-          via
-          %i{:class => "glyphicon glyphicon-user"}
-            = "#{story.retweeters} and"
-          %span.badge
-            = "#{story.retweet}+"
-    %h5.twitterUser
-      %i{:class => "glyphicon glyphicon-comment"}
-      = link_to "@#{story.teller_realname}", "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}"
-    %h2.twitterTitle
-      = story.title
-    .content
-      = raw story.content_preview
-    .individual-view
-      = link_to "Click for individual view", "/stories/#{story.token}"
-    .readMore
-      %h5
-        Read more at
-        = link_to story.domain, story.short_url
-        %i{:class => "glyphicon glyphicon-share-alt"}
-    %br
-    %br
   %hr
+- @stories.each do |story|
+  .debugg
+    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
+  .row.post
+    .post_lefthand.col-md-2
+      .sharedby
+        = link_to "@#{story.teller_realname}", "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}"
+      .sharedby
+        = "#{story.retweeters}"
+      .sharedby
+        = "and #{story.retweet}+"
+    .col-md-8.content_trailer
+      .contentTitle
+        .col-md-10
+          %span.content_title
+            = story.title
+        .col-md-2
+          .content_title_img
+            = raw story.image
+      .content_keywords
+        = story.keywords.join(" | ") + " | "
+        = link_to "[More]", "/stories/#{story.token}"
+        = " | "
+        = link_to "[Review]", edit_story_path(story)
+      .content_details
+        %span.sharecount
+          = "Shared #{story.shared} times | "
+        %span.commentcount
+          = "48 comments"
+    .post_righthand.col-md-2
+      .source_primary
+        = link_to story.domain.split("//")[1], story.short_url
+      .source_secondary
+        .source_secondary_detail
+          = "Washington Post"
+        .source_secondary_detail
+          = "New York Times"
+        .source_secondary_detail
+          = "TechCrunch"
+  %hr
+  %br

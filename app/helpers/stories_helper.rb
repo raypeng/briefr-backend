@@ -17,7 +17,7 @@ module StoriesHelper
   
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
-  NUM_RETWEETERS_DISPLAY = 3
+  NUM_RETWEETERS_DISPLAY = 1
 
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
@@ -58,13 +58,17 @@ module StoriesHelper
     html = HtmlPress.press Readability::Document.new(replaced, params).content
     domain = domain_of url
     output = add_pre(add_domain(html, domain), pre_list)
-    output = Sanitize.fragment(output, Sanitize::Config::RELAXED)
-    output.gsub /<img /, "<img onError=\"this.style.display='none';\""
+    output = sanitize output
+    output.gsub /<img /, "<img onError=\"this.style.display='none';\" "
     
   end
 
   def title_from_html(html)
     Readability::Document.new(html).title.gsub /\t/, ""
+  end
+
+  def keywords_of(html)
+    ["keyword-1", "keyword-2"]
   end
 
   def profile_name_of(username)
@@ -93,7 +97,7 @@ module StoriesHelper
       end
       output = content.slice(0, offset - 1) + " <p>...</p>"
     end
-    output = Sanitize.fragment(output, Sanitize::Config::RELAXED)
+    output = sanitize output
     output.gsub /<img /, "<img onError=\"this.style.display='none';\""
   end
 
@@ -147,9 +151,8 @@ module StoriesHelper
     users = users.sort_by { |user| -user.followers_count }
     usernames = users.map { |user| user.screen_name }
     usernames = usernames[0...NUM_RETWEETERS_DISPLAY]
-    # if can't load retweeters, just display the tweet owner
     if usernames.empty?
-      "@#{tweet_obj.user.screen_name}"
+      ""
     else
       "@" + usernames.join(",@")
     end
@@ -161,6 +164,24 @@ module StoriesHelper
 
   def score_of(retweet, favorite)
     retweet + favorite * 2
+  end
+
+  def shared_of(url, retweet)
+    begin
+      response = HTTParty.get("http://urls.api.twitter.com/1/urls/count.json?url=#{CGI.escape(url)}")
+      count = JSON.parse(response.body)['count']
+      if count.nil?
+        raise CountSharedError.new("#{url} return nil from counting API")
+      else
+        count
+      end
+    rescue CountSharedError => e
+      @@logger.error e.message
+      retweet * 3
+    rescue Exception => e
+      @@logger.error "#{url} retweet can't be counted"
+      retweet * 3
+    end
   end
 
   def domain_of(url)
@@ -195,20 +216,21 @@ module StoriesHelper
     end
 
     begin
+
       html = open(story.short_url, :read_timeout => 5).read
       story.title ||= title_from_html html
       story.content ||= content_from html, story.long_url
       story.content_preview = preview_of story.content
       story.image ||= image_of story.content
-
-      # this is not expected to work
-      # story.count ||= count_occurrence_of_link story.short_url
+      story.keywords ||= keywords_of story.content
 
       t = $client.status(story.tweet_id)
       story.retweet ||= retweet_of t
       story.favorite ||= favorite_of t
       story.retweeters ||= retweeters_of t
       story.score = score_of story.retweet, story.favorite
+      story.shared ||= shared_of story.long_url, story.retweet
+      
       return story
       
     rescue Exception => e

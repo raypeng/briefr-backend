@@ -11,9 +11,12 @@ class Story
   field :content,          type: String
   field :content_preview,  type: String
   field :image,            type: String
+  field :keywords,         type: Array
+
   field :score,            type: Integer
-  field :retweet,          type: Integer
+  field :shared,           type: Integer
   field :favorite,         type: Integer
+  field :retweet,          type: Integer
   field :retweeters,       type: String
   
   field :short_url,        type: String
@@ -22,7 +25,6 @@ class Story
   field :tweet_id,         type: Integer
   field :teller_username,  type: String
   field :teller_realname,  type: String
-  # field :time,             type: DateTime
 
   field :on_topic,         type: Boolean, default: true
 
@@ -34,13 +36,14 @@ class Story
 
   # model relations
   belongs_to :category
+  belongs_to :teller
 
   # validations
   validates_presence_of :short_url, :tweet_id, :teller_username, :category
   validates_uniqueness_of :short_url
 
   # add token before create
-  before_create :assign_token
+  before_create :assign_token, :assign_teller
 
   
   def self.update_stories_from_timeline
@@ -122,6 +125,10 @@ class Story
 
   def assign_token
     self.token = Sequence.generate_id :story
+  end
+
+  def assign_teller
+    self.teller = Teller.find_by :username, self.teller_username
   end
   
 end
