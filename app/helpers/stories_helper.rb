@@ -23,6 +23,7 @@ module StoriesHelper
 
   class DuplicateLinkError < Exception; end
   class LinkExpansionError < Exception; end
+  class CountSharedError < Exception; end
   
   # 4 steps to get content
   # 1) replcae <pre>xxx</pre> by DUMMY-STRING
@@ -79,9 +80,6 @@ module StoriesHelper
                  num_paragraph = NUM_PARAGRAPH_PREVIEW_DEFAULT,
                  num_character = NUM_CHARACTER_PREVIEW_THRESHOLD)
                  
-    # two extra <div><div> in the beginning
-    # content = content[10, content.length - 10]
-    
     # use </pre> </p> as natural ending
     if content.length < num_character
       output = content + " <p>...</p>"
@@ -117,13 +115,16 @@ module StoriesHelper
       # 'config/url_expander_credentials.yml',
       #                            :limit => 50)
       
-      # response = HTTParty.get("http://expandurl.appspot.com/expand?url=#{CGI.escape(short_url)}")
-      # JSON.parse(response.body)['end_url']
-      
       response = HTTParty.get("http://api.longurl.org/v2/expand?url=#{CGI.escape(short_url)}&format=json")
       long_url = JSON.parse(response.body)['long-url']
       if long_url.nil?
-        raise LinkExpansionError.new("#{short_url} return nil from expanding API")
+        response = HTTParty.get("http://expandurl.appspot.com/expand?url=#{CGI.escape(short_url)}")
+        long_url = JSON.parse(response.body)['end_url']
+        if long_url.nil?
+          raise LinkExpansionError.new("#{short_url} return nil from expanding API")
+        else
+          long_url
+        end
       else
         long_url
       end
@@ -205,6 +206,9 @@ module StoriesHelper
   
   def expand_story(story)
 
+    @@logger.sev_threshold = Logger::DEBUG
+    @@logger.debug story.short_url
+    
     story.teller_realname ||= profile_name_of story.teller_username
     story.long_url ||= expand_url story.short_url
     story.domain ||= domain_of story.long_url
@@ -217,7 +221,7 @@ module StoriesHelper
 
     begin
 
-      html = open(story.short_url, :read_timeout => 5).read
+      html = open(story.short_url, :read_timeout => 10).read
       story.title ||= title_from_html html
       story.content ||= content_from html, story.long_url
       story.content_preview = preview_of story.content
@@ -234,8 +238,9 @@ module StoriesHelper
       return story
       
     rescue Exception => e
+
       # once encounter can't fetch the story, regard the story a bad one
-      @@logger.error "in expand_story: #{e.message}"
+      @@logger.error "in expand_story: #{e.message} | #{e.backtrace[0]}"
       return nil
       
     end
