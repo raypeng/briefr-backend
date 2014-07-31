@@ -20,6 +20,9 @@ gem 'twitter'
 # Use readaility for capturing article content from url
 gem 'ruby-readability'
 
+# Use alchemy-api-rb for keyword analysis
+gem 'alchemy-api-rb'
+
 # Use Sanitize to make story.content html chunk safe
 gem 'sanitize'
 

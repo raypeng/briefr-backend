@@ -1,6 +1,7 @@
 module StoriesHelper
 
   require_relative '../../config/twitter_config'
+  require_relative '../../config/alchemy_config'
 
   require 'readability'
   require 'sanitize'
@@ -18,12 +19,14 @@ module StoriesHelper
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
   NUM_RETWEETERS_DISPLAY = 1
+  NUM_KEYWORDS_DISPLAY = 5
 
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
 
   class DuplicateLinkError < Exception; end
   class LinkExpansionError < Exception; end
   class CountSharedError < Exception; end
+  class KeywordExtractionError < Exception; end
   
   # 4 steps to get content
   # 1) replcae <pre>xxx</pre> by DUMMY-STRING
@@ -69,7 +72,17 @@ module StoriesHelper
   end
 
   def keywords_of(html)
-    ["keyword-1", "keyword-2"]
+    begin
+      results = AlchemyAPI::KeywordExtraction.new.search(:html => html)
+      if results.nil? or results.empty?
+        raise KeywordExtractionError.new("can't extract keywords from html")
+      else
+        keywords = results[0...NUM_KEYWORDS_DISPLAY].map { |hash| hash["text"] }
+      end
+    rescue Exception => e
+      @@logger.error e.message
+      ["keyword-1", "keyword-2"]
+    end
   end
 
   def profile_name_of(username)

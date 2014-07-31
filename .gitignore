@@ -19,5 +19,8 @@
 # Ignore emacs auto save.
 *.*~
 
-# Ignore Twitter App configuration file.
+# Ignore Twitter API key file.
 /config/twitter_config.rb
+
+# Ignore Alchemy API key file.
+/config/alchemy_config.rb

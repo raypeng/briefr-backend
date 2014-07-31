@@ -91,23 +91,23 @@ class Story
       stories[category].compact!
       stories[category] = stories[category].sort_by { |story| -story.score }
       stories[category][0...@@NUM_STORIES_PER_CATEGORY_SAVE].each do |story|
+        url_temp = story.short_url
         story = expand_story story
 
-        if not story.nil?
-          begin
-            if story.save
-              @@logger.info "#{story.short_url} saved"
+        begin
+          if story.save
+            @@logger.info "#{story.short_url} saved"
+          else
+            if story.errors.messages == { :short_url => ["is already taken"] }
+              @@logger.info "#{story.short_url} already in db"
+              raise DuplicateLinkError.new("#{story.short_url} already in db")
             else
-              if story.errors.messages == { :short_url => ["is already taken"] }
-                @@logger.info "#{story.short_url} already in db"
-                raise DuplicateLinkError.new("#{story.short_url} already in db")
-              else
-                @@logger.error "#{story.short_url} can't be inserted"
-                raise IOError.new("can't insert story #{story.short_url}")
-              end
+              @@logger.error "#{story.short_url} can't be inserted"
+              raise IOError.new("can't insert story #{story.short_url}")
             end
-          rescue Exception => e
           end
+        rescue NoMethodError => e
+          @@logger.error "#{url_temp} expanded to nil"
         end
 
       end
@@ -128,7 +128,7 @@ class Story
   end
 
   def assign_teller
-    self.teller = Teller.find_by :username, self.teller_username
+    self.teller = Teller.find_by username: self.teller_username
   end
   
 end
