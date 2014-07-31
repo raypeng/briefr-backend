@@ -1,13 +1,27 @@
-%div{:class => "row" ,:id => "opener"}
-  %div{:class => "col-md-2"}
-  %div{:class => "col-md-8 topmostrow"}
+%div.header_middle.col-md-8
+  %div.topmostrow
     %p
-      %span{:class=>"selected"}
+      %span.selected
+        &nbsp;&nbsp;&nbsp;
         %a{:href=>""}
+          %i.glyphicon.glyphicon-print
           Tech
-      %span{:class => "unselected"}
-        = "/"
-        %a{:href=>""} business /
-        %a{:href=>""} lifestyle /
-        %a{:href=>""} other
-  %div{:class=>"col-md-2"}
+        &nbsp;&nbsp;&nbsp;
+      %span.unselected
+        = " | "
+        &nbsp;&nbsp;&nbsp;
+        %a{:href=>""}
+          %i.glyphicon.glyphicon-briefcase
+          Business
+        &nbsp;&nbsp;&nbsp;
+        = " | "
+        &nbsp;&nbsp;&nbsp;
+        %a{:href=>""}
+          %i.glyphicon.glyphicon-glass
+          lifestyle
+        &nbsp;&nbsp;&nbsp;
+        =" | "
+        &nbsp;&nbsp;&nbsp;
+        %a{:href=>""}
+          %i.glyphicon.glyphicon-plus
+          other

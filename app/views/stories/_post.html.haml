@@ -1,8 +1,8 @@
-.debugg
+.debug
   = "Total Story.count: #{Story.count}"
   %hr
 - @stories.each do |story|
-  .debugg
+  .debug
     = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
   .row.post
     .post_lefthand.col-md-2
@@ -12,8 +12,8 @@
         = "#{story.retweeters}"
       .sharedby
         = "and #{story.retweet}+"
-    .col-md-8.content_trailer
-      .contentTitle
+    .content_trailer.col-md-8
+      .contentTitle.row
         .col-md-10
           %span.content_title
             = story.title
@@ -41,4 +41,3 @@
         .source_secondary_detail
           = "TechCrunch"
   %hr
-  %br
