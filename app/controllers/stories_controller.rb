@@ -2,19 +2,9 @@ class StoriesController < ApplicationController
 
   include StoriesHelper
 
-  def index
-    # Story.update_stories_from_timeline
-    @stories = Story.where(on_topic: true)
-    # @stories.map! { |story| story.prepare }
-    # @stories.compact
-    @stories = @stories.sort_by { |story| -story.score }
-    $logger.info "stories#index count: #{@stories.count}"
-  end
-
   def show
-    @stories = Story.where token: params[:id]
+    @story = Story.find_by token: params[:id]
     $logger.info "stories#show #{params[:id]}"
-    render 'stories/index'
   end
 
   def edit

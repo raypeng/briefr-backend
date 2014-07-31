@@ -32,8 +32,9 @@ gem 'pismo'
 # Use html_press to make html lightweight for database
 gem 'html_press'
 
-# Use API from a google app
+# Use link expansion APIs
 # http://expandurl.appspot.com/
+# http://api.longurl.org/
 # this is favoured over 'expander' 'url_expander' because of the depth
 # gem 'expander'
 # gem 'url_expander'
@@ -79,4 +80,3 @@ gem 'spring',        group: :development
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
-

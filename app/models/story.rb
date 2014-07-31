@@ -108,6 +108,7 @@ class Story
           end
         rescue NoMethodError => e
           @@logger.error "#{url_temp} expanded to nil"
+        rescue Exception => e
         end
 
       end
