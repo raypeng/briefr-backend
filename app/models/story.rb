@@ -31,8 +31,8 @@ class Story
   field :token,            type: Integer
   
   # class config vars
-  @@NUM_STORIES_PER_CATEGORY_FETCH = 30
-  @@NUM_STORIES_PER_CATEGORY_SAVE = 20
+  @@NUM_STORIES_PER_CATEGORY_FETCH = 50
+  @@NUM_STORIES_PER_CATEGORY_SAVE = 50
 
   # model relations
   belongs_to :category
