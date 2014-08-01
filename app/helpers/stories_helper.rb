@@ -154,10 +154,10 @@ module StoriesHelper
       end
     rescue LinkExpansionError => e
       @@logger.error e.message
-      short_url
+      nil
     rescue Exception => e
       @@logger.error "#{short_url} can't be fetched or expanded"
-      short_url
+      nil
     end
   end
 
@@ -172,7 +172,7 @@ module StoriesHelper
 
   def retweeters_of(tweet_obj)
     users = $client.retweeters_of tweet_obj, { :count => 100 }
-    @@logger.debug "overall: #{users.length}"
+    @@logger.debug "retweeters: #{users.length}"
     users = users.sort_by { |user| -user.followers_count }
     usernames = users.map { |user| user.screen_name }
     usernames = usernames[0...NUM_RETWEETERS_DISPLAY]
@@ -193,6 +193,9 @@ module StoriesHelper
 
   def shared_of(url, retweet)
     begin
+      if url.nil?
+        raise CountSharedError.new("count shared of nil long_url")
+      end
       response = HTTParty.get("http://urls.api.twitter.com/1/urls/count.json?url=#{CGI.escape(url)}")
       count = JSON.parse(response.body)['count']
       if count.nil?
@@ -210,9 +213,16 @@ module StoriesHelper
   end
 
   def domain_of(url)
-    head, tail = url.split("//")
-    domain_name = tail.split("/").first
-    head + "//" + domain_name
+    if url.nil?
+      nil
+    else
+      head, tail = url.split("//")
+      if tail.nil?
+        head
+      else
+        tail.split("/").first
+      end
+    end
   end
 
   def extract_url(text)
@@ -247,7 +257,7 @@ module StoriesHelper
 
       html = open(story.short_url, :read_timeout => 10).read
       story.title ||= title_from_html html
-      story.content ||= content_from html, story.long_url
+      story.content ||= content_from html, story.short_url # story.long_url
       story.content_preview = preview_of story.content
       story.image ||= image_of story.content
       story.keywords ||= keywords_of story.content
@@ -264,7 +274,7 @@ module StoriesHelper
     rescue Exception => e
 
       # once encounter can't fetch the story, regard the story a bad one
-      @@logger.error "in expand_story: #{e.message} | #{e.backtrace[0]}"
+      @@logger.error "in expand_story: #{e.message}"
       return nil
       
     end

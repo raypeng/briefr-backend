@@ -31,8 +31,8 @@ class Story
   field :token,            type: Integer
   
   # class config vars
-  @@NUM_STORIES_PER_CATEGORY_FETCH = 50
-  @@NUM_STORIES_PER_CATEGORY_SAVE = 50
+  @@NUM_STORIES_PER_TELLER_FETCH = 20
+  @@NUM_STORIES_PER_CATEGORY_SAVE = 10
 
   # model relations
   belongs_to :category
@@ -64,7 +64,7 @@ class Story
 
         @@logger.debug "teller: #{teller.username}"
         
-        $client.user_timeline(teller.username).take(@@NUM_STORIES_PER_CATEGORY_FETCH).each do |tweet|
+        $client.user_timeline(teller.username).take(@@NUM_STORIES_PER_TELLER_FETCH).each do |tweet|
 
           story = Story.new
           story.short_url = extract_url tweet.full_text
@@ -107,7 +107,7 @@ class Story
             end
           end
         rescue NoMethodError => e
-          @@logger.error "#{url_temp} expanded to nil"
+          @@logger.error "#{url_temp} error in expanding story"
         rescue Exception => e
         end
 

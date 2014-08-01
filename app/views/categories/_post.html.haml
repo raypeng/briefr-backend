@@ -3,7 +3,7 @@
   %hr
 - @stories.each do |story|
   .debug
-    = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
+    = debug "long_url: #{story.long_url}, domain: #{story.domain}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
   .row.post
     .post_lefthand.col-md-2
       .sharedby
@@ -32,7 +32,7 @@
       .content_title_img
         = raw story.image
       .source_primary
-        = link_to "View Original at #{story.domain.split('//')[1]}", story.short_url
+        = link_to "View Original#{' at ' + story.domain if not story.domain.nil?}", story.short_url
       -# .source_secondary
         .source_secondary_detail
           = "Washington Post"
