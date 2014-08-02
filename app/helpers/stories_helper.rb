@@ -11,9 +11,9 @@ module StoriesHelper
   require 'json'
   require 'httparty'
 
-  IGNORED_DOMAINS = ['http://www.youtube.com',
-                     'http://downloads.bbc.co.uk',
-                     'http://instagram.com'
+  IGNORED_DOMAINS = ['www.youtube.com',
+                     'downloads.bbc.co.uk',
+                     'instagram.com'
                     ]
   
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
