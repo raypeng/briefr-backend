@@ -11,22 +11,6 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap.min
 //= require jquery_ujs
 //= require_tree .
-
-var menuRight = document.getElementById( 'cbp-spmenu-s2' ),
-    showRight = document.getElementById( 'showRight' ),
-    showRight1 = document.getElementById( 'showRight1'),
-    body = document.body;
-
-showRight.onclick = function() {
-    classie.toggle( this, 'active' );
-    classie.toggle( menuRight, 'cbp-spmenu-open' );
-    disableOther( 'showRight' );
-};
-
-showRight1.onclick = function() {
-    classie.toggle(this, 'active' );
-    classie.toggle( menuRight, 'cpb-spmenu-s2' );
-    disableOther( 'showRight1');
-}

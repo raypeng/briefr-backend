@@ -39,8 +39,9 @@ gem 'httparty'
 gem 'json'
 
 # Use bootstrap
-gem 'bootstrap-sass', '3.2.0.1'
+# gem 'bootstrap-sass', '3.2.0.1'
 gem 'sprockets', '2.11.0'
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
