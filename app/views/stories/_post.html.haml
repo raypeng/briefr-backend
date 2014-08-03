@@ -4,6 +4,32 @@
 - @stories.each do |story|
   .debugg
     = debug "long_url: #{story.long_url}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
+  %div.blockElement
+    %img.blockImage
+      = raw story.image
+    %div.blockContent
+      %div.blockShare
+        %span{"data-toggle" => "tooltip", "data-original-title" => "Founder of Digg, Investor with Google Ventures"}
+          = link_to "@#{story.teller_realname}", "https://twitter.com/#{story.teller_username}/statuses/#{story.tweet_id}"
+      %h3.blockTitle
+        = story.title
+      %a.blockSnippet
+        = story.keywords.join(" | ") + " | "
+        = " | "
+        = link_to "[Review]", edit_story_path(story)
+      %div.blockMeta
+        %span.blockSource
+          =  "Read more at"
+          = link_to story.domain.split("//")[1], story.short_url
+        %span.blockCount
+          = "SHARED +#{story.retweet} TIMES"
+        %span.blockTweet
+          %i.fa.fa-twitter.blockIcon
+
+    %div#collapse.row.collapse.panel-body
+      = story.preview
+
+
   .row.post
     .post_lefthand.col-md-2
       .sharedby
