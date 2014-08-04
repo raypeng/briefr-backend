@@ -61,4 +61,5 @@ begin
 
 rescue Exception => e
   p e.message
+  p e.backtrace[0]
 end

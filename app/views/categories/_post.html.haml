@@ -1,9 +1,9 @@
-.debugg
+.debug
   = "Total Story.count: #{Story.count}"
   %hr
 - @stories.each do |story|
-  .debugg
-    = debug "long_url: #{story.long_url}, domain: #{story.domain}, score: #{story.score}, re: #{story.retweet_count}, fav: #{story.favorite_count}, total_user, #{story.teller.followers_count}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
+  .debug
+    = debug "tweet: #{story.tweet_text}, short_url: #{story.short_url}, long_url: #{story.long_url}, domain: #{story.domain}, score: #{story.score}, re: #{story.retweet_count}, fav: #{story.favorite_count}, total_user, #{story.teller.followers_count}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
 
   %div.blockElement
     .blockImage
@@ -12,6 +12,8 @@
       %div.blockShare
         %span{"data-toggle" => "tooltip", "data-original-title" => story.teller.description}
           = link_to "@#{story.teller.username}", "https://twitter.com/#{story.teller.username}/statuses/#{story.tweet_id}"
+        %blockquote.tweet-content
+          = story.tweet_text
       %h3.blockTitle
         = story.title
       .blockSnippet

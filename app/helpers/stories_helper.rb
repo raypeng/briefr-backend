@@ -135,10 +135,6 @@ module StoriesHelper
 
   def expand_url(short_url)
     begin
-      # UrlExpander::Client.expand(short_url, :config_file =>
-      # 'config/url_expander_credentials.yml',
-      #                            :limit => 50)
-      
       response = HTTParty.get("http://api.longurl.org/v2/expand?url=#{CGI.escape(short_url)}&format=json")
       long_url = JSON.parse(response.body)['long-url']
       if long_url.nil?
@@ -159,11 +155,6 @@ module StoriesHelper
       @@logger.error "#{short_url} can't be fetched or expanded"
       nil
     end
-  end
-
-  def count_occurrence_of_link(url)
-    # might be slow
-    $client.search(url).count
   end
 
   def retweet_of(tweet_obj)
@@ -226,6 +217,7 @@ module StoriesHelper
   end
 
   def extract_url(text)
+    # extract the first url, might not be ideal
     match = text.match(/http:\/\/t.co\/\S*/)
     if match.nil?
       nil

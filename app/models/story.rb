@@ -6,7 +6,8 @@ class Story
   extend StoriesHelper
   
   include Mongoid::Document
-  
+
+  field :tweet_text,       type: String
   field :title,            type: String
   field :content,          type: String
   field :content_preview,  type: String
@@ -65,13 +66,15 @@ class Story
         $client.user_timeline(teller.username).take(@@NUM_STORIES_PER_TELLER_FETCH).each do |tweet|
 
           story = Story.new
+          tweet_text = tweet.full_text
           story.short_url = extract_url tweet.full_text
 
           # skip those without links
           if story.short_url.nil?
             next
           end
-          
+
+          story.tweet_text = tweet_text.gsub /http:\/\/t.co\/\S*/, ""
           story.retweet_count = retweet_of tweet
           story.favorite_count = favorite_of tweet
           story.tweet_id = tweet.id
