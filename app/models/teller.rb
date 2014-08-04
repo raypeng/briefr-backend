@@ -4,6 +4,7 @@ class Teller
 
   field :username,         type: String
   field :description,      type: String
+  field :followers_count,  type: Integer
 
   # model relations
   belongs_to :category
@@ -13,12 +14,14 @@ class Teller
   validates_uniqueness_of :username
 
   # add descriptions before create
-  before_create :assign_description
+  before_create :assign_properties
 
   private
 
-  def assign_description
-    self.description = $client.user(username).description
+  def assign_properties
+    u = $client.user(username)
+    self.description = u.description
+    self.followers_count = u.followers_count
   end
 
 end

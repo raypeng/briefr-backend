@@ -13,18 +13,16 @@ class Story
   field :image,            type: String
   field :keywords,         type: String
 
-  field :score,            type: Integer
+  field :score,            type: Float
   field :shared,           type: Integer
-  field :favorite,         type: Integer
-  field :retweet,          type: Integer
+  field :favorite_count,   type: Integer
+  field :retweet_count,    type: Integer
   field :retweeters,       type: String
   
   field :short_url,        type: String
   field :long_url,         type: String
   field :domain,           type: String
   field :tweet_id,         type: Integer
-  field :teller_username,  type: String
-  field :teller_realname,  type: String
 
   field :on_topic,         type: Boolean, default: true
 
@@ -39,11 +37,11 @@ class Story
   belongs_to :teller
 
   # validations
-  validates_presence_of :short_url, :tweet_id, :teller_username, :category
+  validates_presence_of :short_url, :tweet_id, :teller, :category
   validates_uniqueness_of :short_url
 
   # add token before create
-  before_create :assign_token, :assign_teller
+  before_create :assign_token
 
   
   def self.update_stories_from_timeline
@@ -74,12 +72,12 @@ class Story
             next
           end
           
-          story.retweet = retweet_of tweet
-          story.favorite = favorite_of tweet
+          story.retweet_count = retweet_of tweet
+          story.favorite_count = favorite_of tweet
           story.tweet_id = tweet.id
-          story.teller_username = teller.username
+          story.teller = teller
           story.category = category
-          story.score = score_of story.retweet, story.favorite
+          story.score = score_of story.retweet_count, story.favorite_count, story.teller.followers_count
           # story = expand_story story
           stories[category] << story
           
@@ -90,12 +88,19 @@ class Story
     stories.keys.each do |category|
       stories[category].compact!
       stories[category] = stories[category].sort_by { |story| -story.score }
-      stories[category][0...@@NUM_STORIES_PER_CATEGORY_SAVE].each do |story|
+      count = 0
+      stories[category].each do |story|
+
+        if count >= @@NUM_STORIES_PER_CATEGORY_SAVE
+          break
+        end
+        
         url_temp = story.short_url
         story = expand_story story
 
         begin
           if story.save
+            count += 1
             @@logger.info "#{story.short_url} saved"
           else
             if story.errors.messages == { :short_url => ["is already taken"] }
@@ -126,10 +131,6 @@ class Story
 
   def assign_token
     self.token = Sequence.generate_id :story
-  end
-
-  def assign_teller
-    self.teller = Teller.find_by username: self.teller_username
   end
   
 end

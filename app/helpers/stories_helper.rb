@@ -63,7 +63,7 @@ module StoriesHelper
     html = HtmlPress.press Readability::Document.new(replaced, params).content
     domain = domain_of url
     output = add_pre(add_domain(html, domain), pre_list)
-    output = sanitize output
+    output = sanitize_with_img output
     output.gsub /<img /, "<img onError=\"this.style.display='none';\" "
     
   end
@@ -119,7 +119,7 @@ module StoriesHelper
       end
       output = content.slice(0, offset - 1) + " <p>...</p>"
     end
-    output = sanitize output
+    output = sanitize_without_img output
     output.gsub /<img /, "<img onError=\"this.style.display='none';\""
   end
 
@@ -187,8 +187,8 @@ module StoriesHelper
     tweet_obj.favorite_count
   end
 
-  def score_of(retweet, favorite)
-    retweet + favorite * 2
+  def score_of(retweet, favorite, follower)
+    (retweet + favorite).to_f / follower
   end
 
   def shared_of(url, retweet)
@@ -234,8 +234,12 @@ module StoriesHelper
     end
   end
 
-  def sanitize(html)
+  def sanitize_with_img(html)
     Sanitize.fragment(html, Sanitize::Config::RELAXED)
+  end
+
+  def sanitize_without_img(html)
+    Sanitize.fragment(html, Sanitize::Config::BASIC)
   end
   
   def expand_story(story)
@@ -243,7 +247,6 @@ module StoriesHelper
     @@logger.sev_threshold = Logger::DEBUG
     @@logger.debug story.short_url
     
-    story.teller_realname ||= profile_name_of story.teller_username
     story.long_url ||= expand_url story.short_url
     story.domain ||= domain_of story.long_url
 
@@ -263,11 +266,11 @@ module StoriesHelper
       story.keywords ||= keywords_of story.content
 
       t = $client.status(story.tweet_id)
-      story.retweet ||= retweet_of t
-      story.favorite ||= favorite_of t
+      story.retweet_count ||= retweet_of t
+      story.favorite_count ||= favorite_of t
       story.retweeters ||= retweeters_of t
-      story.score = score_of story.retweet, story.favorite
-      story.shared ||= shared_of story.long_url, story.retweet
+      story.score = score_of story.retweet_count, story.favorite_count, story.teller.followers_count
+      story.shared ||= shared_of story.long_url, story.retweet_count
       
       return story
       
