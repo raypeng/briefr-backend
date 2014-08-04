@@ -17,7 +17,7 @@ $(function(){
             $(this).css("color","#359660");
         });
 
-        $("#bus").click(function(){
+        $("#biz").click(function(){
             $(".active").attr("class", "");
             $(this).attr("class","active");
         });

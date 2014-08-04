@@ -1,8 +1,8 @@
-.debugg
+.debug
   = "Total Story.count: #{Story.count}"
   %hr
-- @stories.take(5).each do |story|
-  .debugg
+- @stories.each do |story|
+  .debug
     = debug "long_url: #{story.long_url}, domain: #{story.domain}, score: #{story.score}, re: #{story.retweet}, fav: #{story.favorite}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
 
   %div.blockElement
@@ -25,7 +25,7 @@
           = "SHARED #{story.retweet}+TIMES"
         %span.blockTweet
           %i.fa.fa-twitter.blockIcon
-    %br
-    = raw story.content
-    -# %div#collapse.row.collapse.panel-body
+    -# %br
+    -# = raw story.content
+    %div#collapse.row.collapse.panel-body
       = raw story.content_preview
