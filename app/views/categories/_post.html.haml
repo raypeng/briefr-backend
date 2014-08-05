@@ -5,29 +5,30 @@
   .debug
     = debug "tweet: #{story.tweet_text}, short_url: #{story.short_url}, long_url: #{story.long_url}, domain: #{story.domain}, score: #{story.score}, re: #{story.retweet_count}, fav: #{story.favorite_count}, total_user, #{story.teller.followers_count}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
 
-  %div.blockElement
+  .blockElement
     .blockImage
       = raw story.image
-    %div.row.blockContent
-      %div.blockShare
+    .row.blockContent
+      .blockShare
         %span{"data-toggle" => "tooltip", "data-original-title" => story.teller.description}
           = link_to "@#{story.teller.username}", "https://twitter.com/#{story.teller.username}/statuses/#{story.tweet_id}"
-        %blockquote.tweet-content
+        -# %blockquote.tweet-content
           = story.tweet_text
       %h3.blockTitle
         = story.title
       .blockSnippet
         = story.keywords
         = link_to "[Review]", edit_story_path(story)
-      %div.blockMeta
+        = link_to "[More]", "/stories/#{story.token}"
+      .blockMeta
         %span.blockSource
-          =  "Read more at"
+          = "Read more at"
           = link_to story.domain, story.short_url
         %span.blockCount
-          = "SHARED #{story.retweet_count}+TIMES"
+          = "SHARED #{story.retweet_count}+ TIMES"
         %span.blockTweet
           %i.fa.fa-twitter.blockIcon
     -# %br
     -# = raw story.content
-    %div#collapse.row.collapse.panel-body
+    #collapse.row.collapse.panel-body
       = raw story.content_preview

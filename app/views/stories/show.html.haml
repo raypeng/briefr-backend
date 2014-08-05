@@ -1,42 +1,26 @@
-%br
-%br
-%br
 .debug
-  = debug "long_url: #{@story.long_url}, score: #{@story.score}, re: #{@story.retweet}, fav: #{@story.favorite}, length_original: #{@story.content.length}, length_preview: #{@story.content_preview.length}, on_topic: #{@story.on_topic}, image: #{@story.image}, token: #{@story.token}, user_description: #{@story.teller.description}"
-.row.post
-  .post_lefthand.col-md-2
-    .sharedby
-      = link_to "@#{@story.teller_realname}", "https://twitter.com/#{@story.teller_username}/statuses/#{@story.tweet_id}"
-    .sharedby
-      = "#{@story.retweeters}"
-    .sharedby
-      = "and #{@story.retweet}+"
-  .content_trailer.col-md-8
-    .contentTitle.row
-      .col-md-11
-        %span.content_title
-          = @story.title
-      .col-md-1
-    .content_keywords.row
-      = @story.keywords
-      = link_to "[More]", "/stories/#{@story.token}"
-      = " | "
-      = link_to "[Review]", edit_story_path(@story)
-    .content_details.row
-      %span.sharecount
-        = "Shared #{@story.shared} times | "
-      %span.commentcount
-        = "48 comments"
-    %hr
-    .content
+  = debug "tweet: #{@story.tweet_text}, short_url: #{@story.short_url}, long_url: #{@story.long_url}, domain: #{@story.domain}, score: #{@story.score}, re: #{@story.retweet_count}, fav: #{@story.favorite_count}, total_user, #{@story.teller.followers_count}, length_original: #{@story.content.length}, length_preview: #{@story.content_preview.length}, on_topic: #{@story.on_topic}, image: #{@story.image}, token: #{@story.token}, user_description: #{@story.teller.description}"
+
+.blockElement
+  .blockImage
+    = raw @story.image
+    .row.blockContent
+      .blockShare
+        %span{"data-toggle" => "tooltip", "data-original-title" => @story.teller.description}
+          = link_to "@#{@story.teller.username}", "https://twitter.com/#{@story.teller.username}/statuses/#{@story.tweet_id}"
+      %h3.blockTitle
+        = @story.title
+      .blockSnippet
+        = @story.keywords
+        = link_to "[Review]", edit_story_path(@story)
+      .blockMeta
+        %span.blockSource
+          =  "Read more at"
+          = link_to @story.domain, @story.short_url
+        %span.blockCount
+          = "SHARED #{@story.retweet_count}+ TIMES"
+        %span.blockTweet
+          %i.fa.fa-twitter.blockIcon
+    %br
+    .blockContent.panel-body
       = raw @story.content
-  .post_righthand.col-md-2
-    .source_primary
-      = link_to "View Original at #{@story.domain.split('//')[1]}", @story.short_url
-    -# .source_secondary
-      .source_secondary_detail
-        = "Washington Post"
-      .source_secondary_detail
-        = "New York Times"
-      .source_secondary_detail
-        = "TechCrunch"
