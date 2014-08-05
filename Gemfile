@@ -8,6 +8,12 @@ gem 'rails', '4.1.4'
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+# Use Active Admin
+# https://github.com/elia/activeadmin-mongoid/issues/78
+gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin-mongoid', github: 'elia/activeadmin-mongoid', branch: 'rails4'
+
 # Use whenever to schedule tasks
 gem 'whenever', :require => false
 
