@@ -15,8 +15,8 @@ class StoriesController < ApplicationController
   def update
     @story = Story.find params[:id]
     p = story_params
-    p[:content] = sanitize p[:content]
-    p[:content_preview] = sanitize p[:content_preview]
+    p[:content] = sanitize_with_img p[:content]
+    p[:content_preview] = sanitize_without_img p[:content_preview]
     @story.update(p)
     $logger.info "stories#edit #{params[:id]}"
     if p[:on_topic] == false

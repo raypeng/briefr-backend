@@ -3,11 +3,11 @@
     = "Total Story.count: #{Story.count}"
   .col-md-7
     .debug
-      = debug "long_url: #{@story.long_url}, score: #{@story.score}, re: #{@story.retweet}, fav: #{@story.favorite}, length_original: #{@story.content.length}, length_preview: #{@story.content_preview.length}, token: #{@story.token}"
+      = debug "long_url: #{@story.long_url}, score: #{@story.score}, re: #{@story.retweet_count}, fav: #{@story.favorite_count}, length_original: #{@story.content.length}, length_preview: #{@story.content_preview.length}, token: #{@story.token}"
     .post
       %h5.twitterUser
         %i{:class => "glyphicon glyphicon-comment"}
-        = link_to "@#{@story.teller_realname}", "https://twitter.com/#{@story.teller_username}/statuses/#{@story.tweet_id}"
+        = link_to "@#{@story.teller.username}", "https://twitter.com/#{@story.teller.username}/statuses/#{@story.tweet_id}"
       %h2.twitterTitle
         = @story.title
       .content
