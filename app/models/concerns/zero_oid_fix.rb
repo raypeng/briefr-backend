@@ -1,3 +1,6 @@
+# quick fix
+# http://stackoverflow.com/a/11745446/1742820
+
 module ZeroOidFix
   extend ActiveSupport::Concern
 

@@ -5,8 +5,6 @@ class AdminUser
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  # quick fix
-  # http://stackoverflow.com/a/11745446/1742820
   include ZeroOidFix
   
   ## Database authenticatable
