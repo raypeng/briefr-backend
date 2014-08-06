@@ -20,7 +20,12 @@ class Teller
 
   def assign_properties
     u = $client.user(username)
-    self.description = u.description
+    d = u.description
+    if d.nil?
+      self.description = ""
+    else
+      self.description = d
+    end
     self.followers_count = u.followers_count
   end
 

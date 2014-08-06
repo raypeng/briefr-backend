@@ -14,6 +14,15 @@ ActiveAdmin.register Teller do
   #  permitted
   # end
 
-  permit_params :description
+  permit_params :category_id, :username, :description, :followers_count
+
+  index do
+    selectable_column
+    column :category
+    column :username
+    column :description
+    column :followers_count
+    actions
+  end
 
 end

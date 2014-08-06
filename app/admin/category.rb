@@ -15,5 +15,24 @@ ActiveAdmin.register Category do
   # end
 
   permit_params :name
+
+  index do
+    selectable_column
+    column :name
+    actions defaults: true do |category|
+      link_to "Original", "/categories/#{category.name}"
+    end
+  end
+
+  show do |category|
+    attributes_table do
+      row :name
+      category.tellers.each do |teller|
+        row :teller do
+          teller.username
+        end
+      end
+    end
+  end
   
 end
