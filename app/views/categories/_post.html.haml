@@ -18,7 +18,6 @@
         = story.title
       .blockSnippet
         = story.keywords
-        = link_to "[Review]", edit_story_path(story)
         = link_to "[More]", "/stories/#{story.token}"
       .blockMeta
         %span.blockSource
@@ -27,7 +26,5 @@
           = "SHARED #{story.retweet_count}+ TIMES"
         %span.blockTweet
           %i.fa.fa-twitter.blockIcon
-    -# %br
-    -# = raw story.content
     #collapse.row.collapse.panel-body
       = raw story.content_preview

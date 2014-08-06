@@ -25,7 +25,7 @@ class Story
   field :domain,           type: String
   field :tweet_id,         type: Integer
 
-  field :on_topic,         type: Boolean, default: true
+  field :on_topic,         type: Boolean, default: false
 
   field :token,            type: Integer
   

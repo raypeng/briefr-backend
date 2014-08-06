@@ -16,10 +16,17 @@ ActiveAdmin.register Story do
   permit_params :title, :content, :content_preview, :keywords, :retweeters,
                 :on_topic, :image, :tweet_text
 
+  actions :all, :except => [:new]
+  
+  config.sort_order = "token_desc"
+  
   # thanks to this man
   # https://github.com/gregbell/active_admin/issues/53
-  
+
   index do
+    panel "Reminder" do
+      "To finish editing the story and publish, remember to mark 'on_topic' to 'true'."
+    end
     selectable_column
     column :teller
     column :category

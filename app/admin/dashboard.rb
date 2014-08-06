@@ -4,6 +4,10 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
 
+    panel "How to use the admin panel" do
+      "This page only serves as an overview of contents! To edit story, go to Stories session - click the Stories tab above."
+    end
+    
     columns do
 
       column do

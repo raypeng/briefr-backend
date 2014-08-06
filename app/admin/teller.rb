@@ -17,6 +17,9 @@ ActiveAdmin.register Teller do
   permit_params :category_id, :username, :description, :followers_count
 
   index do
+    panel "Reminder" do
+      "You can add a teller, remember to give the username and select the category. The description and followers count will ge grabbed from the web for you."
+    end
     selectable_column
     column :category
     column :username
