@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every :hour do
-  runner "Story.update_stories_from_timeline", environment: "development"
+  runner "Story.update_stories_from_timeline"
 end
