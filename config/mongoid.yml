@@ -67,3 +67,11 @@ test:
         # low amounts for fast failures.
         max_retries: 1
         retry_interval: 0
+production:
+  sessions:
+    default:
+      hosts:
+        - localhost:27017
+      #username: <%= ENV['MONGOID_USERNAME'] %>
+      #password: <%= ENV['MONGOID_PASSWORD'] %>
+      database: briefr_production
