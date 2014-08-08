@@ -20,7 +20,7 @@
 *.*~
 
 # Ignore Twitter API key file.
-# /config/twitter_config.rb
+/config/twitter_config.rb
 
 # Ignore Alchemy API key file.
-# /config/alchemy_config.rb
+/config/alchemy_config.rb

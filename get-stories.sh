@@ -1,1 +1,1 @@
-rails runner 'Story.update_stories_from_timeline'
+rails runner -e production 'Story.update_stories_from_timeline'

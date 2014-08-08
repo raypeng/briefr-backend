@@ -17,7 +17,7 @@ listen "/tmp/unicorn.briefr.sock"
 
 # Number of processes
 # worker_processes 4
-worker_processes 8
+worker_processes 2
 
 # Time-out
 timeout 30
