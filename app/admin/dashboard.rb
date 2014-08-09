@@ -11,9 +11,11 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
 
       column do
-        panel "Tech" do
+        panel "Tech (released)" do
           ul do
-            Category.find_by(name: "tech").stories.each do |story|
+            stories = Category.find_by(name: "tech").stories
+            stories = stories.select! { |s| s.on_topic == true }
+            stories.each do  |story|
               li link_to story.title, admin_story_path(story)
             end
           end
@@ -21,9 +23,11 @@ ActiveAdmin.register_page "Dashboard" do
       end
 
       column do
-        panel "Business" do
+        panel "Business (released)" do
           ul do
-            Category.find_by(name: "biz").stories.each do |story|
+            stories = Category.find_by(name: "biz").stories
+            stories = stories.select! { |s| s.on_topic == true }
+            stories.each do  |story|
               li link_to story.title, admin_story_path(story)
             end
           end
@@ -31,9 +35,11 @@ ActiveAdmin.register_page "Dashboard" do
       end
 
       column do
-        panel "Lifestyle" do
+        panel "Lifestyle (released)" do
           ul do
-            Category.find_by(name: "lifestyle").stories.each do |story|
+            stories = Category.find_by(name: "lifestyle").stories
+            stories = stories.select! { |s| s.on_topic == true }
+            stories.each do  |story|
               li link_to story.title, admin_story_path(story)
             end
           end

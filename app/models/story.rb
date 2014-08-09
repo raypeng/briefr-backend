@@ -33,6 +33,8 @@ class Story
   @@NUM_STORIES_PER_TELLER_FETCH = 20
   @@NUM_STORIES_PER_CATEGORY_SAVE = 10
 
+  @@SAVED_SHORT_URL_TOKEN = []
+
   # model relations
   belongs_to :category
   belongs_to :teller
@@ -98,6 +100,10 @@ class Story
           break
         end
         
+        if @@SAVED_SHORT_URL_TOKEN.include? story.short_url[12..-1]
+          next
+        end
+
         url_temp = story.short_url
         story = expand_story story
 
@@ -105,6 +111,7 @@ class Story
           if story.save
             count += 1
             @@logger.info "#{story.short_url} saved"
+            @@SAVED_SHORT_URL_TOKEN << story.short_url[12..-1]
           else
             if story.errors.messages == { :short_url => ["is already taken"] }
               @@logger.info "#{story.short_url} already in db"
