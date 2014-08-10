@@ -17,8 +17,6 @@
     background-repeat:repeat-x;
     border-color:#133783 #133783 #091b40;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3b5998', endColorstr='#ff133783', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-facebook:hover,.btn-facebook:focus,.btn-facebook:active,.btn-facebook.active,.btn-facebook.disabled,.btn-facebook[disabled]{
@@ -44,8 +42,6 @@
     background-repeat:repeat-x;
     border-color:#0271bf #0271bf #014473;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2daddc', endColorstr='#ff0271bf', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-twitter:hover,.btn-twitter:focus,.btn-twitter:active,.btn-twitter.active,.btn-twitter.disabled,.btn-twitter[disabled]{
@@ -71,8 +67,6 @@
     background-repeat:repeat-x;
     border-color:#e6e6e6 #e6e6e6 #c0c0c0;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffafafa', endColorstr='#ffe6e6e6', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-github:hover,.btn-github:focus,.btn-github:active,.btn-github.active,.btn-github.disabled,.btn-github[disabled]{
@@ -98,8 +92,6 @@
     background-repeat:repeat-x;
     border-color:#ab171e #ab171e #680e12;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd62229', endColorstr='#ffab171e', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-pinterest:hover,.btn-pinterest:focus,.btn-pinterest:active,.btn-pinterest.active,.btn-pinterest.disabled,.btn-pinterest[disabled]{
@@ -125,8 +117,6 @@
     background-repeat:repeat-x;
     border-color:#4393bb #4393bb #2f6783;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff73b8db', endColorstr='#ff4393bb', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-linkedin:hover,.btn-linkedin:focus,.btn-linkedin:active,.btn-linkedin.active,.btn-linkedin.disabled,.btn-linkedin[disabled]{
@@ -152,8 +142,6 @@
     background-repeat:repeat-x;
     border-color:#c53727 #c53727 #85251a;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdd4b39', endColorstr='#ffc53727', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-google-plus:hover,.btn-google-plus:focus,.btn-google-plus:active,.btn-google-plus.active,.btn-google-plus.disabled,.btn-google-plus[disabled]{
@@ -179,8 +167,6 @@
     background-repeat:repeat-x;
     border-color:#3f729b #3f729b #294a65;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6f97b6', endColorstr='#ff3f729b', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-instagram:hover,.btn-instagram:focus,.btn-instagram:active,.btn-instagram.active,.btn-instagram.disabled,.btn-instagram[disabled]{
@@ -206,8 +192,6 @@
     background-repeat:repeat-x;
     border-color:#2181cf #2181cf #16588d;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff37a3eb', endColorstr='#ff2181cf', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-dropbox:hover,.btn-dropbox:focus,.btn-dropbox:active,.btn-dropbox.active,.btn-dropbox.disabled,.btn-dropbox[disabled]{
@@ -233,8 +217,6 @@
     background-repeat:repeat-x;
     border-color:#205081 #205081 #112a44;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2d5f9c', endColorstr='#ff205081', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-bitbucket:hover,.btn-bitbucket:focus,.btn-bitbucket:active,.btn-bitbucket.active,.btn-bitbucket.disabled,.btn-bitbucket[disabled]{
@@ -260,8 +242,6 @@
     background-repeat:repeat-x;
     border-color:#cb396f #cb396f #91264e;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffea4c89', endColorstr='#ffcb396f', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-dribbble:hover,.btn-dribbble:focus,.btn-dribbble:active,.btn-dribbble.active,.btn-dribbble.disabled,.btn-dribbble[disabled]{
@@ -287,8 +267,6 @@
     background-repeat:repeat-x;
     border-color:#ff0084 #ff0084 #b3005c;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff051a5', endColorstr='#ffff0084', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-flickr:hover,.btn-flickr:focus,.btn-flickr:active,.btn-flickr.active,.btn-flickr.disabled,.btn-flickr[disabled]{
@@ -314,8 +292,6 @@
     background-repeat:repeat-x;
     border-color:#0072b1 #0072b1 #004165;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0cbadf', endColorstr='#ff0072b1', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-foursquare:hover,.btn-foursquare:focus,.btn-foursquare:active,.btn-foursquare.active,.btn-foursquare.disabled,.btn-foursquare[disabled]{
@@ -341,8 +317,6 @@
     background-repeat:repeat-x;
     border-color:#33669a #33669a #204061;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff397cb6', endColorstr='#ff33669a', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-renren:hover,.btn-renren:focus,.btn-renren:active,.btn-renren.active,.btn-renren.disabled,.btn-renren[disabled]{
@@ -368,8 +342,6 @@
     background-repeat:repeat-x;
     border-color:#00aff0 #00aff0 #0077a3;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff70c3e2', endColorstr='#ff00aff0', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-skype:hover,.btn-skype:focus,.btn-skype:active,.btn-skype.active,.btn-skype.disabled,.btn-skype[disabled]{
@@ -395,8 +367,6 @@
     background-repeat:repeat-x;
     border-color:#185397 #185397 #0e2f55;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5184c1', endColorstr='#ff185397', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-stackexchange:hover,.btn-stackexchange:focus,.btn-stackexchange:active,.btn-stackexchange.active,.btn-stackexchange.disabled,.btn-stackexchange[disabled]{
@@ -422,8 +392,6 @@
     background-repeat:repeat-x;
     border-color:#27709b #27709b #18445e;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff569cc4', endColorstr='#ff27709b', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-trello:hover,.btn-trello:focus,.btn-trello:active,.btn-trello.active,.btn-trello.disabled,.btn-trello[disabled]{
@@ -449,8 +417,6 @@
     background-repeat:repeat-x;
     border-color:#2a4763 #2a4763 #13202d;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3a5976', endColorstr='#ff2a4763', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-tumblr:hover,.btn-tumblr:focus,.btn-tumblr:active,.btn-tumblr.active,.btn-tumblr.disabled,.btn-tumblr[disabled]{
@@ -476,8 +442,6 @@
     background-repeat:repeat-x;
     border-color:#426187 #426187 #293c54;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5a7fa6', endColorstr='#ff426187', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-vk:hover,.btn-vk:focus,.btn-vk:active,.btn-vk.active,.btn-vk.disabled,.btn-vk[disabled]{
@@ -503,8 +467,6 @@
     background-repeat:repeat-x;
     border-color:#e64141 #e64141 #c11919;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff85959', endColorstr='#ffe64141', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-weibo:hover,.btn-weibo:focus,.btn-weibo:active,.btn-weibo.active,.btn-weibo.disabled,.btn-weibo[disabled]{
@@ -530,8 +492,6 @@
     background-repeat:repeat-x;
     border-color:#074c4d #074c4d #010707;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1f6768', endColorstr='#ff074c4d', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-xing:hover,.btn-xing:focus,.btn-xing:active,.btn-xing.active,.btn-xing.disabled,.btn-xing[disabled]{
@@ -557,8 +517,6 @@
     background-repeat:repeat-x;
     border-color:#6e0610 #6e0610 #250205;
     border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcd332d', endColorstr='#ff6e0610', GradientType=0);
-    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
 .btn-youtube:hover,.btn-youtube:focus,.btn-youtube:active,.btn-youtube.active,.btn-youtube.disabled,.btn-youtube[disabled]{
