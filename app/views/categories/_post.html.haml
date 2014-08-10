@@ -1,9 +1,10 @@
 - @stories.each do |story|
-  %hr
+  %br
+  %br
   .row
-    .col-xs-12.col-sm-3
+    .col-xs-11.col-sm-2.blockImage
       = raw story.image
-    .col-xs-12.col-sm-9
+    .col-xs-11.col-sm-9
       .people
         %span{"data-toggle" => "tooltip", "data-original-title" => story.teller.description}
           = link_to "@#{story.teller.username}", "https://twitter.com/#{story.teller.username}/statuses/#{story.tweet_id}"
@@ -12,7 +13,6 @@
         = story.title
       .blockSnippet
         = story.keywords
-        = link_to "[More]", "/stories/#{story.token}"
       .blockMeta
         .blockSource
           = link_to story.domain, story.short_url
