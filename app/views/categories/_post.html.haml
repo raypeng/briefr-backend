@@ -1,30 +1,24 @@
-.debug
-  = "Total Story.count: #{Story.count}"
-  %hr
 - @stories.each do |story|
-  .debug
-    = debug "tweet: #{story.tweet_text}, short_url: #{story.short_url}, long_url: #{story.long_url}, domain: #{story.domain}, score: #{story.score}, re: #{story.retweet_count}, fav: #{story.favorite_count}, total_user, #{story.teller.followers_count}, length_original: #{story.content.length}, length_preview: #{story.content_preview.length}, on_topic: #{story.on_topic}, image: #{story.image}, token: #{story.token}, user_description: #{story.teller.description}"
-
-  .blockElement
-    .blockImage
+  %hr
+  .row
+    .col-xs-12.col-sm-3
       = raw story.image
-    .row.blockContent
-      .blockShare
+    .col-xs-12.col-sm-9
+      .people
         %span{"data-toggle" => "tooltip", "data-original-title" => story.teller.description}
           = link_to "@#{story.teller.username}", "https://twitter.com/#{story.teller.username}/statuses/#{story.tweet_id}"
-        -# %blockquote.tweet-content
-          = story.tweet_text
-      %h3.blockTitle
+        = "#{story.retweeters} + #{story.retweet_count} others"
+      .blockTitle
         = story.title
       .blockSnippet
         = story.keywords
         = link_to "[More]", "/stories/#{story.token}"
       .blockMeta
-        %span.blockSource
+        .blockSource
           = link_to story.domain, story.short_url
-        %span.blockCount
+        .blockCount
           = "SHARED #{story.retweet_count}+ TIMES"
-        %span.blockTweet
+        .blockTweet
           %i.fa.fa-twitter.blockIcon
-    #collapse.row.collapse.panel-body
-      = raw story.content_preview
+
+
