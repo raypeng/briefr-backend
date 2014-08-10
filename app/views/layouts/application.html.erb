@@ -12,11 +12,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <%= render 'layouts/header' %>
-
 </head>
 <body class="cbp-spmenu-push general">
- 
+
+  <%= render 'layouts/header' %>
   <%= yield %>
   <%= render 'layouts/footer' %>
 

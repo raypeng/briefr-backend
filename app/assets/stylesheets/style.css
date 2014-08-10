@@ -2,344 +2,366 @@
     width: 70%;
 }
 
-footer{
-    margin-top:45px;
-    padding-top:5px;
-    border-top:1px solid #eaeaea;
-    color:#eaeaea;
+footer {
+    margin-top: 45px;
+    padding-top: 5px;
+    border-top: 1px solid #eaeaea;
+    color: #bababa;
 }
 
-footer a{
-    color:#333333;
+footer a {
+    color: #333333;
 }
 
-footer a:hover{
-    color:#222222;
+footer a:hover {
+    color: #222222;
 }
 
-body{
-    font-size:22px;
-    font-family:Sans-serif;
-    color:rgba(0,0,0,0.8);
-    padding-top:50px;
-    background-color: rgb(249, 249, 249);
+body {
+    font-size: 22px;
+    font-family: Sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    padding-top: 0px;
+    background-color: #f6f6f6;
 }
 
-h1,h2,h3,h4,h5,h6{
-    font-family:'Roboto', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
 }
 
-p{
-    font-family:Serif;
+p {
+    font-family: Serif;
 }
 
-a{
-    color:rgba(0,0,0,0.8);
+a {
+    color: rgba(0, 0, 0, 0.8);
 }
 
-a:hover{
-    color:rgba(0,0,0,0.8);
-    text-decoration:none;
+a:hover {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
 }
 
-.navbar{
-    font-size:18px;
-    color:rgba(0,0,0,0.8);
+.navbar {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    border-image-width: 0px 0px 0px 0px;
+    border-bottom-width: 0px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border-color: rgb(255, 255, 255);
+    background-image: none;
+    background-color: #f6f6f6;
+    box-shadow: inherit;
 }
 
-.navbar-brand{
-    font-family:"Noto Sans";
-    color:rgba(0,0,0,0.8);
-    font-weight:700;
+.navbar-brand {
+    font-family: "Noto Sans";
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
 }
 
-.navbar-collapse{
-    font-family:"Karma";
-    font-size:18px;
-    text-transform:uppercase;
+.navbar-collapse {
+    font-family: "Karma";
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
-.navbar-collapse ul{
-    float:right;
+.navbar-collapse ul {
+    float: right;
 }
 
-.blockHeader{
-    text-align:left;
-    padding-bottom:15px;
-    border-bottom:1px solid rgba(0,0,0,0.15);
+.blockHeader {
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.blockHeader h2{
-    font-family:"Roboto";
-    font-size:64px;
-    font-weight:100
+.blockHeader h2 {
+    font-family: "Roboto";
+    font-size: 64px;
+    font-weight: 100
 }
 
-.stickyHeader h4{
-    font-family:"Karma";
-    font-size:24px;
-    text-transform:uppercase;
-    text-align:center
+.stickyHeader h4 {
+    font-family: "Karma";
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center
 }
 
-.blockList{
-    margin:0 auto;
-    width:80%;
-    max-width:1000px;
+.blockList {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1000px;
 }
 
-.blockImage img{
-    display:block;
-    max-width:150px;
-    max-height:180px;
-    margin:0 0;
-    float:left;
-    background-color:#fafafa;
-    background-position:center;
-    background-size:cover;
+.blockImage img {
+    display: block;
+    max-width: 150px;
+    max-height: 180px;
+    margin: 0 0;
+    float: left;
+    background-color: #fafafa;
+    background-position: center;
+    background-size: cover;
 }
 
-.blockElement{
-    padding-top:45px;
-    padding-bottom:55px;
-    border-bottom:1px solid rgba(0,0,0,0.15);
-    line-height:1.1;
+.blockElement {
+    padding-top: 45px;
+    padding-bottom: 55px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    line-height: 1.1;
 }
 
-.blockContent{
-    margin-left:165px;
+.blockContent {
+    margin-left: 165px;
 }
 
-.blockShare a{
-    font-family:'Roboto';
-    font-weight:500;
-    font-size:18px;
-    color:#359660;
-    margin-bottom:5px;
+.blockShare a {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 18px;
+    color: #359660;
+    margin-bottom: 5px;
 }
 
-.blockTitle{
-    margin-top:5px;
-    font-size:30pt;
-    font-weight:700;
-    line-height:1;
-    margin-bottom:0px;
-    display:block;
-    font-family:'PT Sans';
-    color:#00434b;
+.blockTitle {
+    margin-top: 5px;
+    font-size: 30pt;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0px;
+    display: block;
+    font-family: 'PT Sans';
+    color: #00434b;
 }
 
-.blockTitle a{
-    color:inherit;
-    text-decoration:none;
+.blockTitle a {
+    color: inherit;
+    text-decoration: none;
 }
 
-.blockSnippet{
-    font-family:'PT Sans';
-    margin-top:5px;
-    margin-bottom:0px;
-    font-weight:304;
-    display:block;
-    font-size:20pt;
-    color:#a0a0a0;
-}
-.blockSnippet>a
-{
-    font-family:'PT Sans',Sans-serifS;
-    margin-top:5px;
-    margin-bottom:0px;
-    font-weight:304;
-    font-size:20pt;
-    color:#a0a0a0;
+.blockSnippet {
+    font-family: 'PT Sans';
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-weight: 300;
+    display: block;
+    font-size: 20pt;
+    color: #a0a0a0;
 }
 
+.blockSnippet>a {
+    font-family: 'PT Sans', Sans-serifS;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-weight: 304;
+    font-size: 20pt;
+    color: #a0a0a0;
+}
 
-.blockMeta{
+.blockMeta {
     display: inline-flex;
-    float:left;
-    font-weight:700;
-    font-family:'Noto Sans',Sans-serifS;
-    font-size:12pt;
+    float: left;
+    font-weight: 700;
+    font-family: 'Noto Sans', Sans-serifS;
+    font-size: 12pt;
     margin-top: 5px;
 }
 
-.blockSource a{
-    color:#a0a0a0;
+.blockSource a {
+    color: #a0a0a0;
 }
 
-.blockSource{
-    color:#a0a0a0;
+.blockSource {
+    color: #a0a0a0;
 }
 
-.blockCount{
-    margin-right:10px;
-    margin-left:20px;
+.blockCount {
+    margin-right: 10px;
+    margin-left: 20px;
 }
 
-.blockTweet{
-    margin-left:10px;
-    margin-right:20px;
+.blockTweet {
+    margin-left: 10px;
+    margin-right: 20px;
 }
 
-.blockReview{
-    font-family:'Noto Sans';
-    font-size:12px;
+.blockReview {
+    font-family: 'Noto Sans';
+    font-size: 12px;
 }
 
-.blockIcon{
-    vertical-align:middle;
+.blockIcon {
+    vertical-align: middle;
 }
 
-.panel-body{
-    margin-top:10px;
-    width:850px;
-    border-radius:12px;
-    margin-left:170px;
-    background-color:#eeeeee;
+.panel-body {
+    margin-top: 10px;
+    width: 850px;
+    border-radius: 12px;
+    margin-left: 170px;
+    background-color: #eeeeee;
 }
 
-.panel-body{
-    font-family:"Karma", serif;
-    letter-spacing:0.01rem;
-    font-weight:400;
-    font-style:normal;
-    font-size:18px;
-    line-height:1.4;
-    margin-top:8px;
-    margin-bottom:15px;
-    color:rgba(0,0,0,0.8);
-    -webkit-font-smoothing:antialiased;
-    text-align:justify;
+.panel-body {
+    font-family: "Karma", serif;
+    letter-spacing: 0.01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1.4;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    color: rgba(0, 0, 0, 0.8);
+    -webkit-font-smoothing: antialiased;
+    text-align: justify;
 }
 
-.collapsing{
-    transition:.2s;
+.collapsing {
+    transition: .2s;
 }
 
-@media (max-width: 1000px){
-    .blockHeader{
-	text-align:center;
+@media (max-width: 1000px) {
+    .blockHeader {
+        text-align: center;
     }
-
-    .blocklist{
-	margin:0 auto;
-	width:90%;
-	max-width:1000px;
+    .blocklist {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1000px;
     }
-
-    .blockImage{
-	display:block;
-	width:100px;
-	height:100px;
-	margin:0;
-	float:right;
+    .blockImage {
+        display: block;
+        width: 100px;
+        height: 100px;
+        margin: 0;
+        float: right;
     }
-
-    .blockContent{
-	margin-right:120px;
-	margin-left:0px;
+    .blockContent {
+        margin-right: 120px;
+        margin-left: 0px;
     }
-
-    .panel-body{
-	margin-left:0px;
-	width:100%;
-	max-width:1000px;
+    .panel-body {
+        margin-left: 0px;
+        width: 100%;
+        max-width: 1000px;
     }
-
-    .panel-body p{
-	font-family:"Karma", serif;
-	font-size:20px;
+    .panel-body p {
+        font-family: "Karma", serif;
+        font-size: 20px;
     }
-
 }
 
-@media (max-width: 500px){
-    .blockHeader{
-	padding-left:15px;
-	padding-right:15px;
-	padding-top:25px;
-	padding-bottom:25px;
+@media (max-width: 500px) {
+    .blockHeader {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 25px;
+        padding-bottom: 25px;
     }
-
-    .blockElement{
-	padding-left:15px;
-	padding-right:15px;
-	padding-top:25px;
-	padding-bottom:40px;
-	margin-bottom:10px;
+    .blockElement {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 25px;
+        padding-bottom: 40px;
+        margin-bottom: 10px;
     }
-
-    .blockList{
-	border-right:0;
-	width:100%;
+    .blockList {
+        border-right: 0;
+        width: 100%;
     }
-
-    .blockContent{
-	padding:0px 0px;
-	margin-right:0px;
+    .blockContent {
+        padding: 0px 0px;
+        margin-right: 0px;
     }
-
-    .blockSource{
-	font-size:11px;
+    .blockSource {
+        font-size: 11px;
     }
-
-    .blockCount{
-	font-size:11px;
+    .blockCount {
+        font-size: 11px;
     }
-
-    .blockImage{
-	width:100%;
-	height:200px;
-	margin-top:10px;
-	margin-bottom:10px;
+    .blockImage {
+        width: 100%;
+        height: 200px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
-
-    .blockSnippet{
-	margin-bottom:5px;
+    .blockSnippet {
+        margin-bottom: 5px;
     }
-
 }
 
-@media (max-width: 400px){
-    .blockElement{
-	padding-left:15px;
-	padding-right:15px;
-	padding-top:25px;
-	padding-bottom:40px;
-	margin-bottom:10px;
+@media (max-width: 400px) {
+    .blockElement {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 25px;
+        padding-bottom: 40px;
+        margin-bottom: 10px;
     }
-
-    .blockList{
-	border-right:0;
-	width:100%;
+    .blockList {
+        border-right: 0;
+        width: 100%;
     }
-
-    .blockContent{
-	padding:0px 0px;
-	margin-right:30px;
+    .blockContent {
+        padding: 0px 0px;
+        margin-right: 30px;
     }
-
-    .blockSource{
-	font-size:11px;
+    .blockSource {
+        font-size: 11px;
     }
-
-    .blockCount{
-	font-size:11px;
+    .blockCount {
+        font-size: 11px;
     }
-
-    .blockImage{
-	width:100%;
-	height:200px;
-	margin-top:10px;
-	margin-bottom:10px;
+    .blockImage {
+        width: 100%;
+        height: 200px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
-
-    .blockSnippet{
-	margin-bottom:5px;
+    .blockSnippet {
+        margin-bottom: 5px;
     }
-
 }
 
-.debug{
-    display:none;
+.debug {
+    display: none;
+}
+
+.navwrapper {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20pt;
+}
+
+#brand {
+    padding-left: 10px;
+    color: #174a50;
+    font-family: 'Ubuntu', arial;
+    font-size: 35pt
+}
+
+#navcollaspse1 {
+    text-transform: none;
+    font-size: 20pt;
+    font-family: 'Ubuntu'
+}
+
+.navbar-collapse>.navbar-nav {
+    float: left 
+}
+
+.navbar-nav > li > a {
+    color: #a6a6a6;
+}
+
+.navbar-nac > .active > a {
+    color: #282828;
+}
+
+.people, .people a {
+    font-family: 'PT Sans';
+    font-size: 13pt;
+    color: #e9771a;
 }
