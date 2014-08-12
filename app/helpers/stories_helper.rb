@@ -13,17 +13,18 @@ module StoriesHelper
 
   IGNORED_DOMAINS = ['www.youtube.com',
                      'downloads.bbc.co.uk',
-                     'instagram.com'
+                     'instagram.com',
+                     'i.instagram.com'
                     ]
   
   NUM_PARAGRAPH_PREVIEW_DEFAULT = 5
   NUM_CHARACTER_PREVIEW_THRESHOLD = 1000
   NUM_RETWEETERS_DISPLAY = 1
   NUM_KEYWORDS_DISPLAY = 3
-  NUM_KEYWORDS_CHARACTER_THRESHOLD = 80
-
+  NUM_KEYWORDS_CHARACTER_THRESHOLD = 70
+  
   @@logger = Logger.new(Rails.root.join('log', 'logger.log'))
-
+  
   class DuplicateLinkError < Exception; end
   class LinkExpansionError < Exception; end
   class CountSharedError < Exception; end

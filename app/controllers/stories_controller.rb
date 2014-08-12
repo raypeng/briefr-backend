@@ -7,6 +7,13 @@ class StoriesController < ApplicationController
     $logger.info "stories#show #{params[:id]}"
   end
 
+  def show_index
+    story = Story.find_by token: params[:token]
+    @stories = [story]
+    $logger.info "stories@show_index #{params[:token]}"
+    render '/categories/index'
+  end
+  
   # def edit
   #   @story = Story.find params[:id]
   #   $logger.info "stories#edit #{params[:id]}"

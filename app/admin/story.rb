@@ -42,8 +42,12 @@ ActiveAdmin.register Story do
     column :title
     column :keywords
     column :on_topic
-    actions defaults: true do |story|
-      link_to "Original", "/stories/#{story.token}"
+    actions
+    actions defaults: false do |story|
+      link_to "Index", "/stories/#{story.token}/show_index"
+    end
+    actions defaults: false do |story|
+      link_to "Full", "/stories/#{story.token}"
     end
   end
 

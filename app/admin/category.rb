@@ -19,7 +19,8 @@ ActiveAdmin.register Category do
   index do
     selectable_column
     column :name
-    actions defaults: true do |category|
+    actions
+    actions defaults: false do |category|
       link_to "Original", "/categories/#{category.name}"
     end
   end
