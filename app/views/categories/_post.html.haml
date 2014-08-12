@@ -1,5 +1,5 @@
 - @stories.each do |story|
-  %br
+  %hr
   %br
   .row
     .col-xs-11.col-sm-2.blockImage
@@ -8,7 +8,7 @@
       .people
         %span{"data-toggle" => "tooltip", "data-original-title" => story.teller.description}
           = link_to "@#{story.teller.username}", "https://twitter.com/#{story.teller.username}/statuses/#{story.tweet_id}"
-        = "#{story.retweeters} + #{story.retweet_count} others"
+        = "+ #{story.retweet_count} others"
       .blockTitle
         = story.title
       .blockSnippet

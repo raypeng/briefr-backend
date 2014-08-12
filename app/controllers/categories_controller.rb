@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   
   def show
     @category = Category.find_by name: params[:name]
+    @cat = @category.name
     @stories = @category.stories.where(on_topic: true)
     # get x recent stories and sort by score descending
     @stories = @stories.sort_by { |story| -story.token}

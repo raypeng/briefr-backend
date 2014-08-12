@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
-      <a id="brand" href="/"> BRIFER.</a>
+      <a id="brand" href="/"> BRIEFR.</a>
     </div>
   </nav>
   <div class="navbar-wrapper stuckMenu isStuck">
@@ -17,11 +17,11 @@
           </div>
           <div class="navbar-collapse collapse" id="navcollaspse1">
             <ul class="nav navbar-nav">
-              <li  class="menuItem active"><a href="/categories/tech">techgnology</a>
+              <li class='menuItem <%= "#{'active' if @cat == 'tech'}" %>'><a href="/categories/tech">technology</a>
               </li>
-              <li  class="menuItem"><a href="/categories/biz">business</a>
+              <li class='menuItem <%= "#{'active' if @cat == 'biz'}" %>'><a href="/categories/biz">business</a>
               </li>
-              <li  class="menuItem"><a href="/categories/lifestyle">lifestyle</a>
+              <li class='menuItem <%= "#{'active' if @cat == 'lifestyle'}" %>'><a href="/categories/lifestyle">lifestyle</a>
               </li>
             </ul>
           </div>
