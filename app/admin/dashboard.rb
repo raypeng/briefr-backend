@@ -14,8 +14,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Tech (released)" do
           ul do
             stories = Category.find_by(name: "tech").stories
-            stories = stories.select! { |s| s.on_topic == true }
-            stories.each do  |story|
+            stories = stories.select { |s| s.on_topic == true }
+            stories.each do |story|
               li link_to story.title, admin_story_path(story)
             end
           end
@@ -26,8 +26,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Business (released)" do
           ul do
             stories = Category.find_by(name: "biz").stories
-            stories = stories.select! { |s| s.on_topic == true }
-            stories.each do  |story|
+            stories = stories.select { |s| s.on_topic == true }
+            stories.each do |story|
               li link_to story.title, admin_story_path(story)
             end
           end
@@ -38,8 +38,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Lifestyle (released)" do
           ul do
             stories = Category.find_by(name: "lifestyle").stories
-            stories = stories.select! { |s| s.on_topic == true }
-            stories.each do  |story|
+            stories = stories.select { |s| s.on_topic == true }
+            stories.each do |story|
               li link_to story.title, admin_story_path(story)
             end
           end
